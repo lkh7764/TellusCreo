@@ -4,12 +4,54 @@ using UnityEngine;
 
 public class P_PuzzleInfo: MonoBehaviour
 {
-    public GameObject window;
+    public GameObject puzzleObj;
+    public GameObject puzzleClear;
 
-    public void moveCamera()
+    private GameObject puzzleWindow;
+
+    private bool isActive;
+    private bool isClear;
+    private bool hasClear;
+
+    private void Start()
     {
-        FindObjectOfType<P_Camera>().puzzlePos_x = window.transform.position.x;
-        FindObjectOfType<P_Camera>().puzzlePos_y = window.transform.position.y;
-        FindObjectOfType<P_Camera>().playPuzzle = true;
+        puzzleObj.SetActive(false);
+        puzzleWindow = puzzleObj;
+
+        isActive = false;
+        isClear = false;
+
+        if (puzzleClear != null)
+        {
+            hasClear = true;
+            puzzleClear.SetActive(false);
+        }
+        else
+            hasClear = false;
     }
+
+    public void IsActive_true()
+    {
+        isActive = true;
+        puzzleWindow.SetActive(true);
+    }
+
+    public void IsActive_false()
+    {
+        isActive = false;
+        puzzleWindow.SetActive(false);
+    }
+
+    public void IsClear_true()
+    {
+        isClear = true;
+        if (hasClear == true)
+        {
+            puzzleWindow.SetActive(false);
+            puzzleWindow = puzzleClear;
+            puzzleWindow.SetActive(true);
+        }
+    }
+
+    public bool Get_IsClear() { return isClear; }
 }

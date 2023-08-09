@@ -43,7 +43,7 @@ public class P_ClickItem : MonoBehaviour
                     if (toybox)
                     {
                         toy_after.SetActive(true);
-                        toy_obj.puzzleClear = toy_after;
+                        // toy_obj.puzzleClear = toy_after;
                         Destroy(GameObject.Find("ToyBoxClear"));
                     }
                     else

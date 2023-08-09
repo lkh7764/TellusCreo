@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class P_GameManager : MonoBehaviour
 {
-    public Ray2D downRay;
-    public Ray2D upRay;
+    public static P_GameManager instance;
+
     public bool isDown;
     public bool isUp;
     public RaycastHit2D downHit;
@@ -21,6 +21,14 @@ public class P_GameManager : MonoBehaviour
     public GameObject drumPivot;
     private bool startRotate;
     private float angle;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -64,10 +72,12 @@ public class P_GameManager : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                isDown = true;
                 Vector2 downPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                downRay = new Ray2D(downPos, Vector2.zero);
+                Ray2D downRay = new Ray2D(downPos, Vector2.zero);
                 downHit = Physics2D.Raycast(downRay.origin, downRay.direction, 1 << 30);
+
+                if(downHit.collider != null)
+                    isDown = true;
             }
         }
         else { isDown = false; }
@@ -76,24 +86,24 @@ public class P_GameManager : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                isUp = true;
                 Vector2 upPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                upRay = new Ray2D(upPos, Vector2.zero);
+                Ray2D upRay = new Ray2D(upPos, Vector2.zero);
                 upHit = Physics2D.Raycast(upRay.origin, upRay.direction);
+
+                if (upHit.collider != null)
+                    isUp = true;
             }
         }
         else { isUp = false; }
     }
 
-    public void Set_isGetKeyA()
+    public void Set_isGetKeyA() 
     {
         isGetKeyA = true;
+        Debug.Log("get keyA");
     }
 
-    public bool Get_isGetKeyA()
-    {
-        return isGetKeyA;
-    }
+    public bool Get_isGetKeyA() { return isGetKeyA; }
 
     public void Set_isGetKeyB()
     {
@@ -101,43 +111,23 @@ public class P_GameManager : MonoBehaviour
         Debug.Log("get keyB");
     }
 
-    public bool Get_isGetKeyB()
-    {
-        return isGetKeyB;
-    }
+    public bool Get_isGetKeyB() { return isGetKeyB; }
 
     public void Set_wireConnect()
     {
         wireConnect = true;
+        Debug.Log("connect wire");
     }
 
-    public bool Get_wireConnect()
-    {
-        return wireConnect;
-    }
+    public bool Get_wireConnect() { return wireConnect; }
 
-    public void Set_dollClear()
-    {
-        dollClear = true;
-    }
+    public void Set_dollClear() { dollClear = true; }
 
-    public bool Get_dollClear()
-    {
-        return dollClear;
-    }
+    public bool Get_dollClear() { return dollClear; }
 
-    public void Set_topClear()
-    {
-        topClear = true;
-    }
+    public void Set_topClear() { topClear = true; }
 
-    public bool Get_topClear()
-    {
-        return topClear;
-    }
+    public bool Get_topClear() { return topClear; }
 
-    public void RotateStick()
-    {
-        startRotate = true;
-    }
+    public void RotateStick() { startRotate = true; }
 }
