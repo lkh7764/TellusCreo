@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class P_DollPuzzle : MonoBehaviour
 {
@@ -55,9 +56,7 @@ public class P_DollPuzzle : MonoBehaviour
     private void FixedUpdate()
     {
         if (startOnTrig)
-        {
             StartCoroutine(StartSet());
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -92,9 +91,12 @@ public class P_DollPuzzle : MonoBehaviour
         if (this.CompareTag("P_move"))
             isMove = true; 
         else 
-            isMove = false; 
+            isMove = false;
 
-        PlayerInput();
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            PlayerInput();
+        }
 
         if (checkLayer == 1 && !isMove)
             startOnTrig = true;

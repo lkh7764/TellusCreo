@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Attic.unity
     guid: 7bf981fed06fdc148b2ffa507e82d63c
   - enabled: 0
-    path: Assets/Scenes/Playroom.unity
+    path: Assets/Scenes/Playroom_Modify20230810.unity
     guid: ab0dedaa295cf72419d23943c03a2185
   - enabled: 0
     path: Assets/Scenes/livingroom.unity

@@ -8,7 +8,7 @@ public class P_DragAndDrop : MonoBehaviour
     private int layer_S;
     private int layer_NS;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         objectRenderer = GetComponent<SpriteRenderer>();
     }
@@ -35,7 +35,7 @@ public class P_DragAndDrop : MonoBehaviour
         }
     }
 
-    private void OnMouseDrag()
+    protected virtual void OnMouseDrag()
     {
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         Vector2 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);

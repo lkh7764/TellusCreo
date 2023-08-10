@@ -18,10 +18,6 @@ public class P_GameManager : MonoBehaviour
     private bool dollClear;
     private bool topClear;
 
-    public GameObject drumPivot;
-    private bool startRotate;
-    private float angle;
-
     private void Awake()
     {
         if (instance == null)
@@ -40,30 +36,12 @@ public class P_GameManager : MonoBehaviour
         wireConnect = false;
         dollClear = false;
         topClear = false;
-
-        startRotate = false;
-        angle = 0f;
     }
 
     void Update()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
-        {
             ShootRay();
-        }
-
-        if (startRotate)
-        {
-            angle += 80 * Time.deltaTime;
-
-            if (angle >= 80f)
-            {
-                drumPivot.transform.rotation = Quaternion.Euler(0, 0, 80);
-                startRotate = false;
-            }
-
-            drumPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
     }
 
     private void ShootRay()
@@ -128,6 +106,4 @@ public class P_GameManager : MonoBehaviour
     public void Set_topClear() { topClear = true; }
 
     public bool Get_topClear() { return topClear; }
-
-    public void RotateStick() { startRotate = true; }
 }

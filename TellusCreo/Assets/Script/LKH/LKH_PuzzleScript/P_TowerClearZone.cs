@@ -33,24 +33,6 @@ public class P_TowerClearZone : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (isRight == false && collision.gameObject.CompareTag("P_building"))
-    //    {
-    //        //Debug.Log("asdf");
-    //        CheckPosition(collision);
-    //        if (isColliderMove == false)
-    //        {
-    //            time += Time.deltaTime;
-    //            if (time >= 3)
-    //            {
-    //                isRight = true;
-    //            }
-    //            else { time = 0; }
-    //        }
-    //    }
-    //}
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         isContect = false;

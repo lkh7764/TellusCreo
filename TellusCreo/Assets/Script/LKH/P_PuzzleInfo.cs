@@ -7,11 +7,14 @@ public class P_PuzzleInfo: MonoBehaviour
     public GameObject puzzleObj;
     public GameObject puzzleClear;
 
-    private GameObject puzzleWindow;
+    public GameObject puzzleWindow;
 
     private bool isActive;
     private bool isClear;
     private bool hasClear;
+
+    private bool isDollPuzzle;
+    private GameObject dollClear;
 
     private void Start()
     {
@@ -28,6 +31,14 @@ public class P_PuzzleInfo: MonoBehaviour
         }
         else
             hasClear = false;
+
+        if (puzzleObj.name == "DollPuzzle")
+        {
+            isDollPuzzle = true;
+            dollClear = GameObject.Find("DollClear");
+        }
+        else
+            isDollPuzzle = false;
     }
 
     public void IsActive_true()
@@ -50,6 +61,13 @@ public class P_PuzzleInfo: MonoBehaviour
             puzzleWindow.SetActive(false);
             puzzleWindow = puzzleClear;
             puzzleWindow.SetActive(true);
+        }
+
+        if (isDollPuzzle == true)
+        {
+            isClear = false;
+            hasClear = true;
+            puzzleClear = dollClear;
         }
     }
 
