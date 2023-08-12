@@ -4,51 +4,75 @@ using UnityEngine;
 
 public class P_Camera : MonoBehaviour
 {
-    public bool playPuzzle;
-    public float puzzlePos_x;
-    public float puzzlePos_y;
+    public GameObject nonPuzzleCanvas;
+    public GameObject puzzleCanvas;
 
-    public float thisPos_x;
-    public float thisPos_y;
-    public float thisPos_z;
+    public float sidePos_x = -30f;
+    public float maxPos_x = 30f;
+    public float minPos_x = -30f;
 
-    public GameObject button;
-    private bool destroyButton;
+    public float puzzlePos_x = -30f;
+    public float puzzlePos_y = 20f;
+    private Vector3 puzzlePos;
+
+    public P_PuzzleInfo nowPuzzle;
 
     private void Start()
     {
-        playPuzzle = false;
+        transform.position = new Vector3(sidePos_x, 0f, -10f);
 
-        thisPos_x = this.transform.position.x;
-        thisPos_y = this.transform.position.y;
-        thisPos_z = this.transform.position.z;
+        puzzlePos = new Vector3(puzzlePos_x, puzzlePos_y, -10f);
 
-        destroyButton = false;
-        button.transform.GetChild(2).gameObject.SetActive(false);
+        nowPuzzle = null;
+
+        nonPuzzleCanvas.SetActive(true);
+        puzzleCanvas.SetActive(false);
     }
 
-    private void Update()
+    public void MoveSide(int direction)
     {
-        if (playPuzzle == true)
+        switch (direction)
         {
-            this.transform.position = new Vector3(puzzlePos_x, puzzlePos_y, thisPos_z);
-            if (!destroyButton)
-            {
-                button.transform.GetChild(0).gameObject.SetActive(false);
-                button.transform.GetChild(1).gameObject.SetActive(false);
-                button.transform.GetChild(2).gameObject.SetActive(true);
-                destroyButton = true;
-            }
+            case 0:
+                // move left
+                sidePos_x -= 20f;
+                if (sidePos_x < minPos_x)
+                    sidePos_x = maxPos_x;
+                break;
+            case 1:
+                // move right
+                sidePos_x += 20f;
+                if (sidePos_x > maxPos_x)
+                    sidePos_x = minPos_x;
+                break;
         }
-        else
+
+        transform.position = new Vector3(sidePos_x, 0f, -10f);
+    }
+
+    public void PlayPuzzle(P_PuzzleInfo clickPuzzle)
+    {
+        if (nowPuzzle == null)
         {
-            if (destroyButton)
-            {
-                button.transform.GetChild(0).gameObject.SetActive(true);
-                button.transform.GetChild(1).gameObject.SetActive(true);
-                button.transform.GetChild(2).gameObject.SetActive(false);
-                destroyButton = false;
-            }
+            transform.position = puzzlePos;
+            nowPuzzle = clickPuzzle;
+            nowPuzzle.IsActive_true();
         }
+
+        nonPuzzleCanvas.SetActive(false);
+        puzzleCanvas.SetActive(true);
+    }
+
+    public void ExitPuzzle()
+    {
+        if (nowPuzzle != null)
+        {
+            transform.position = new Vector3(sidePos_x, 0f, -10f);
+            nowPuzzle.IsActive_false();
+            nowPuzzle = null;
+        }
+
+        nonPuzzleCanvas.SetActive(true);
+        puzzleCanvas.SetActive(false);
     }
 }

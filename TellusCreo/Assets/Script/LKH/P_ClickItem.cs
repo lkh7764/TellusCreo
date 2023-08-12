@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class P_ClickItem : MonoBehaviour
 {
-    public GameObject rayControl;
-    private bool toybox;
-    private P_PuzzleObject toy_obj;
+    private bool isToyboxPuzzle;
     private GameObject toy_after;
+    private P_PuzzleInfo toyInfo;
 
     private bool keyA = false;
     private bool keyB = false;
+
+    private void Awake()
+    {
+        toyInfo = GameObject.Find("toybox_object").GetComponent<P_PuzzleInfo>();
+    }
 
     private void Start()
     {
         if (this.name == "puzzle_toybox_cover")
         {
-            toybox = true;
-            toy_obj = GameObject.Find("toy_box").GetComponent<P_PuzzleObject>();
-            toy_after = GameObject.Find("Clear").transform.GetChild(2).gameObject;
+            isToyboxPuzzle = true;
+            toy_after = GameObject.Find("ToyBoxAfter");
         }
-        if (this.name == "item_keyA") { keyA = true; }
-        if (this.name == "item_keyB") { keyB = true; }
+        else if (this.name == "item_keyA")
+            keyA = true; 
+        else if (this.name == "item_keyB") 
+            keyB = true; 
         else
-            toybox = false;
+            isToyboxPuzzle = false;
     }
 
     void Update()
@@ -33,32 +38,41 @@ public class P_ClickItem : MonoBehaviour
 
     void PlayerInput()
     {
-        if (rayControl.GetComponent<P_GameManager>().isUp)
+        if (P_GameManager.instance.isUp)
         {
-            if (rayControl.GetComponent<P_GameManager>().upHit)
+            RaycastHit2D upHit = P_GameManager.instance.upHit;
+            if (System.Object.ReferenceEquals(this.gameObject, upHit.collider.gameObject))
             {
-                RaycastHit2D upHit = rayControl.GetComponent<P_GameManager>().upHit;
-                if (System.Object.ReferenceEquals(this.gameObject, upHit.collider.gameObject))
+                if (isToyboxPuzzle == true)
                 {
-                    if (toybox)
+                    // 비활성화
+                    toyInfo.IsActive_false();
+                    toyInfo.puzzleWindow = toy_after;
+                    toyInfo.IsActive_true();
+                    // Destroy
+                    //Destroy(GameObject.Find("ToyBoxClear"));
+                }
+                else
+                {
+                    if (upHit.collider.CompareTag("P_item"))
                     {
-                        toy_after.SetActive(true);
-                        toy_obj.puzzleClear = toy_after;
-                        Destroy(GameObject.Find("ToyBoxClear"));
+                        Debug.Log("Get " + this.name);
+                        // 인벤토리
+                        this.GetComponent<AudioSource>().Play();
+                        if (keyA) { P_GameManager.instance.Set_isGetKeyA(); }
+                        if (keyB) { P_GameManager.instance.Set_isGetKeyB(); }
+                        // Destroy
+                        //Destroy(GetComponent<SpriteRenderer>());
+                        //Destroy(GetComponent<Collider2D>());
+                        // 비활성화
+                        GetComponent<SpriteRenderer>().enabled = false;
+                        GetComponent<Collider2D>().enabled = false;
                     }
                     else
                     {
-                        if (upHit.collider.CompareTag("P_item"))
-                        {
-                            Debug.Log("Get " + this.name);
-                            // 인벤토리
-                            this.GetComponent<AudioSource>().Play();
-                            if (keyA) { rayControl.GetComponent<P_GameManager>().Set_isGetKeyA(); }
-                            if (keyB) { rayControl.GetComponent<P_GameManager>().Set_isGetKeyB(); }
-                            Destroy(this.GetComponent<SpriteRenderer>());
-                            Destroy(this.GetComponent<Collider2D>());
-                        }
-                        else { Destroy(gameObject); }
+                        // Destroy
+                        //Destroy(gameObject);
+                        gameObject.SetActive(false);
                     }
                 }
             }

@@ -4,51 +4,16 @@ using UnityEngine;
 
 public class P_UI : MonoBehaviour
 {
-    //void Start()
-    //{
+    private P_Camera cameraController;
 
-    //}
-
-    //void Update()
-    //{
-
-    //}
-
-    public void ClickLeftArrow()
+    private void Awake()
     {
-        if (FindObjectOfType<P_Camera>().playPuzzle == false)
-        {
-            FindObjectOfType<P_Camera>().thisPos_x -= 20;
-            if (FindObjectOfType<P_Camera>().thisPos_x < -30)
-            {
-                FindObjectOfType<P_Camera>().thisPos_x = 30;
-            }
-            FindObjectOfType<P_Camera>().transform.position =
-                new Vector3(FindObjectOfType<P_Camera>().thisPos_x, FindObjectOfType<P_Camera>().thisPos_y, FindObjectOfType<P_Camera>().thisPos_z);
-        }
+        cameraController = FindObjectOfType<P_Camera>();
     }
 
-    public void ClickRightArrow()
-    {
-        if (FindObjectOfType<P_Camera>().playPuzzle == false)
-        {
-            FindObjectOfType<P_Camera>().thisPos_x += 20;
-            if (FindObjectOfType<P_Camera>().thisPos_x > 30)
-            {
-                FindObjectOfType<P_Camera>().thisPos_x = -30;
-            }
-            FindObjectOfType<P_Camera>().transform.position =
-                new Vector3(FindObjectOfType<P_Camera>().thisPos_x, FindObjectOfType<P_Camera>().thisPos_y, FindObjectOfType<P_Camera>().thisPos_z);
-        }
-    }
+    public void ClickLeftArrow() { cameraController.MoveSide(0); }
 
-    public void ClickBackArrow()
-    {
-        if (FindObjectOfType<P_Camera>().playPuzzle == true)
-        {
-            FindObjectOfType<P_Camera>().transform.position = 
-                new Vector3(FindObjectOfType<P_Camera>().thisPos_x, FindObjectOfType<P_Camera>().thisPos_y, FindObjectOfType<P_Camera>().thisPos_z);
-            FindObjectOfType<P_Camera>().playPuzzle = false;
-        }
-    }
+    public void ClickRightArrow() { cameraController.MoveSide(1); }
+
+    public void ClickBackArrow() { cameraController.ExitPuzzle(); }
 }

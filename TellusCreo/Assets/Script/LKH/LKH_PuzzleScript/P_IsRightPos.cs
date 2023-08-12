@@ -9,10 +9,17 @@ public class P_IsRightPos : MonoBehaviour
     public bool isTrigger;
     public bool isRight;
 
-    void Start()
+    public P_PuzzleClear clearCondition;
+
+    private void Awake()
+    {
+        clearCondition = transform.GetComponentInParent<P_PuzzleClear>();
+    }
+
+    private void OnEnable()
     {
         isRight = false;
-        this.gameObject.layer = 30;
+        gameObject.layer = 30;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,8 +28,10 @@ public class P_IsRightPos : MonoBehaviour
 
         if (System.Object.ReferenceEquals(collision.gameObject, correctObj))
             isRight = true;
-        else 
+        else
             isRight = false;
+
+        clearCondition.CheckClear();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -36,5 +45,11 @@ public class P_IsRightPos : MonoBehaviour
     public void setIsRight()
     {
         isRight = true;
+        clearCondition.CheckClear();
+    }
+
+    public void IsRight_false()
+    {
+        isRight = false;
     }
 }
