@@ -97,7 +97,12 @@ public class P_PuzzleClear : MonoBehaviour
                 {
                     puzzleInfo.IsClear_true();
                     clearAudio.Play();
-                    // Destroy(this);
+
+                    Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+                    foreach (Collider2D collider in colliders)
+                        collider.enabled = false;
+                    
+                    Destroy(this);
                 }
             }
         }

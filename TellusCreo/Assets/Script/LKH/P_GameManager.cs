@@ -34,7 +34,7 @@ public class P_GameManager : MonoBehaviour
         isGetKeyA = false;
         isGetKeyB = false;
         wireConnect = false;
-        dollClear = false;
+        dollClear = true;
         topClear = false;
     }
 

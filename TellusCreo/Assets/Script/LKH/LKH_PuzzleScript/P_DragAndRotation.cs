@@ -7,10 +7,28 @@ public class P_DragAndRotation : MonoBehaviour
     private float angle;
     private Vector2 clockHand, mouse;
 
+    private Quaternion originAngle;
+    private P_Camera cameraController;
+
+    private SpriteRenderer objectRenderer;
     private int layer_S;
     private int layer_NS;
 
-    public GameObject rayControl;
+    private void Awake()
+    {
+        originAngle = transform.rotation;
+        cameraController = FindObjectOfType<P_Camera>();
+        
+        objectRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        if (cameraController.nowPuzzle.Get_IsClear() == true)
+            return;
+
+        transform.rotation = originAngle;
+    }
 
     private void Start()
     {
@@ -19,10 +37,8 @@ public class P_DragAndRotation : MonoBehaviour
         layer_NS = SortingLayer.NameToID("P_NotSelect");
         ChangeLayer(30);
 
-        if (!(rayControl.GetComponent<P_GameManager>().Get_dollClear()))
-        {
+        if (P_GameManager.instance.Get_dollClear() == false)
             this.transform.GetComponentInChildren<Collider2D>().enabled = false;
-        }
     }
 
     private void ChangeLayer(int layerNum)
@@ -30,12 +46,12 @@ public class P_DragAndRotation : MonoBehaviour
         if (layerNum == 30)
         {
             this.gameObject.layer = 30;
-            GetComponent<SpriteRenderer>().sortingLayerID = layer_NS;
+            objectRenderer.sortingLayerID = layer_NS;
         }
         else if (layerNum == 31)
         {
             this.gameObject.layer = 31;
-            GetComponent<SpriteRenderer>().sortingLayerID = layer_S;
+            objectRenderer.sortingLayerID = layer_S;
         }
     }
 
@@ -43,7 +59,7 @@ public class P_DragAndRotation : MonoBehaviour
     {
         mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         angle = Mathf.Atan2(mouse.y - clockHand.y, mouse.x - clockHand.x) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     private void Update()
@@ -53,30 +69,24 @@ public class P_DragAndRotation : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (rayControl.GetComponent<P_GameManager>().isDown == true)
+        if (P_GameManager.instance.isDown == true)
         {
-            RaycastHit2D downHit = rayControl.GetComponent<P_GameManager>().downHit;
-            if (downHit)
+            RaycastHit2D downHit = P_GameManager.instance.downHit;
+            if (System.Object.ReferenceEquals(gameObject, downHit.collider.gameObject))
             {
-                if (System.Object.ReferenceEquals(this.gameObject, downHit.collider.gameObject))
-                {
-                    this.tag = "P_move";
-                    clockHand = transform.position;
-                    ChangeLayer(31);
-                }
+                this.tag = "P_move";
+                clockHand = transform.position;
+                ChangeLayer(31);
             }
         }
 
-        if (rayControl.GetComponent<P_GameManager>().isUp == true)
+        if (P_GameManager.instance.isUp == true)
         {
-            RaycastHit2D upHit = rayControl.GetComponent<P_GameManager>().upHit;
-            if (upHit)
+            RaycastHit2D upHit = P_GameManager.instance.upHit;
+            if (System.Object.ReferenceEquals(this.gameObject, upHit.collider.gameObject))
             {
-                if (System.Object.ReferenceEquals(this.gameObject, upHit.collider.gameObject))
-                {
-                    this.tag = "P_stop";
-                    ChangeLayer(30);
-                }
+                this.tag = "P_stop";
+                ChangeLayer(30);
             }
         }
     }
