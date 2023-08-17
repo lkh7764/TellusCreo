@@ -45,35 +45,24 @@ public class P_ClickItem : MonoBehaviour
             {
                 if (isToyboxPuzzle == true)
                 {
-                    // 비활성화
                     toyInfo.IsActive_false();
                     toyInfo.puzzleWindow = toy_after;
                     toyInfo.IsActive_true();
-                    // Destroy
-                    //Destroy(GameObject.Find("ToyBoxClear"));
                 }
                 else
                 {
                     if (upHit.collider.CompareTag("P_item"))
                     {
                         Debug.Log("Get " + this.name);
-                        // 인벤토리
                         this.GetComponent<AudioSource>().Play();
-                        if (keyA) { P_GameManager.instance.Set_isGetKeyA(); }
-                        if (keyB) { P_GameManager.instance.Set_isGetKeyB(); }
-                        // Destroy
-                        //Destroy(GetComponent<SpriteRenderer>());
-                        //Destroy(GetComponent<Collider2D>());
-                        // 비활성화
+                        if (keyA == true) { P_GameManager.instance.Set_isGetKeyA(); }
+                        if (keyB == true) { P_GameManager.instance.Set_isGetKeyB(); }
+
                         GetComponent<SpriteRenderer>().enabled = false;
                         GetComponent<Collider2D>().enabled = false;
                     }
                     else
-                    {
-                        // Destroy
-                        //Destroy(gameObject);
                         gameObject.SetActive(false);
-                    }
                 }
             }
         }

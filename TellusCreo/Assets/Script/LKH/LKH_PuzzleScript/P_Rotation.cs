@@ -10,7 +10,6 @@ public class P_Rotation : MonoBehaviour
     private int count;
 
     private bool isDrag = false;
-    public bool isRotation = false;
 
     private Vector2 beforePos, afterPos;
 
@@ -21,7 +20,44 @@ public class P_Rotation : MonoBehaviour
     public bool isSet;
     public bool isSetAll;
 
-    public GameObject rayControl;
+    private P_Camera cameraController;
+    public bool isRotation = false;
+    private bool rotateRight = false;
+    private bool rotateLeft = false;
+
+    private P_PuzzleClear clearCondition;
+    private Sprite originImg;
+    private Quaternion originRotation;
+
+    private void Awake()
+    {
+        isSet = false;
+        isSetAll = false;
+
+        rig = GetComponent<Rigidbody2D>();
+        cameraController = FindObjectOfType<P_Camera>();
+        clearCondition = transform.GetComponentInParent<P_PuzzleClear>();
+
+        originImg = GetComponent<SpriteRenderer>().sprite;
+        originRotation = transform.rotation;
+    }
+
+    private void OnEnable()
+    {
+        if (cameraController.nowPuzzle.Get_IsClear() == true)
+            return;
+
+        if (isSetAll == false)
+            return;
+
+        GetComponent<SpriteRenderer>().sprite = originImg;
+        isDrag = false;
+        transform.rotation = originRotation;
+
+        isRotation = false;
+        rotateRight = false;
+        rotateLeft = false;
+    }
 
     private void Start()
     {
@@ -31,9 +67,6 @@ public class P_Rotation : MonoBehaviour
         road_x = new float[10];
         road_y = new float[10];
         count = 0;
-
-        isSet = false;
-        isSetAll = false;
 
         this.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -45,30 +78,45 @@ public class P_Rotation : MonoBehaviour
             isSet = true;
             this.GetComponent<SpriteRenderer>().enabled = true;
             collision.gameObject.SetActive(false);
+
+            CheckTrigger();
         }
     }
 
     private void Update()
     {
-        if (isSetAll == false) { CheckTrigger(); }
-        if (isSetAll == true) {
-            PlayerInput();
-            RotateObj();
+        if (isSetAll == false)
+            return;
+
+        if (rotateRight == true)
+        {
+            turnRight();
+            return;
         }
+
+        if(rotateLeft == true)
+        {
+            turnLeft();
+            return;
+        }
+
+        PlayerInput();
     }
 
     private void CheckTrigger()
     {
-        MonoBehaviour[] scripts = transform.parent.GetComponentsInChildren<P_Rotation>();
+        P_Rotation[] scripts = transform.parent.GetComponentsInChildren<P_Rotation>();
         int length = scripts.Length;
-        foreach (MonoBehaviour script in scripts)
+        foreach (P_Rotation script in scripts)
         {
-            if (script.GetComponent<P_Rotation>().isSet == false) { break; }
+            if (script.isSet == false)
+                break;
             else
             {
                 if (script == scripts[length - 1])
                 {
-                    GetComponent<P_Rotation>().isSetAll = true;
+                    foreach (P_Rotation script2 in scripts)
+                        script2.isSetAll = true;
                 }
             }
         }
@@ -76,11 +124,10 @@ public class P_Rotation : MonoBehaviour
 
     private void RotateObj()
     {
-        //saveRoad(count);
-        //count += 1;
         distance = Mathf.Sqrt(((afterPos.x - beforePos.x) * (afterPos.x - beforePos.x)) +
             ((afterPos.y - beforePos.y) * (afterPos.y - beforePos.y)));
-        if (isRotation && distance >= 5)
+
+        if (distance >= 5)
         {
             this.GetComponent<SpriteRenderer>().sprite = rotationImg;
 
@@ -91,37 +138,41 @@ public class P_Rotation : MonoBehaviour
             }
             if (sum_x >= 0)
             {
-                if (sum_y <= 0) { turnRight(); }
-                else { turnLeft(); }
+                if (sum_y <= 0)
+                    rotateRight = true;
+                else
+                    rotateLeft = true;
             }
             else
             {
-                if (sum_y <= 0) { turnLeft(); }
-                else { turnRight(); }
+                if (sum_y <= 0)
+                    rotateLeft = true;
+                else
+                    rotateRight = true;
             }
+
+            isRotation = true;
+            clearCondition.CheckClear_TopPuzzle();
         }
     }
 
     private void PlayerInput()
     {
-        if (rayControl.GetComponent<P_GameManager>().isDown == true)
+        if (P_GameManager.instance.isDown == true)
         {
-            RaycastHit2D downHit = rayControl.GetComponent<P_GameManager>().downHit;
-            if (downHit)
+            GameObject downHit = P_GameManager.instance.downHit.collider.gameObject;
+            if (System.Object.ReferenceEquals(gameObject, downHit))
             {
-                if (System.Object.ReferenceEquals(this.gameObject, downHit.collider.gameObject))
-                {
-                    isDrag = true;
-                    beforePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                }
+                isDrag = true;
+                beforePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if(P_GameManager.instance.isUp_nonCollider == true)
         {
-            if (isDrag)
+            if (isDrag == true)
             {
                 afterPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                isRotation = true;
+                RotateObj();
             }
         }
     }
@@ -148,15 +199,7 @@ public class P_Rotation : MonoBehaviour
         }
     }
 
-    private void turnRight()
-    {
-        rig = GetComponent<Rigidbody2D>();
-        rig.angularVelocity = -speed;
-    }
+    private void turnRight() { rig.angularVelocity = -speed; }
 
-    private void turnLeft()
-    {
-        rig = GetComponent<Rigidbody2D>();
-        rig.angularVelocity = speed;
-    }
+    private void turnLeft() { rig.angularVelocity = speed; }
 }

@@ -6,14 +6,14 @@ public class P_PuzzleClear : MonoBehaviour
 {
     private int length;
 
-    //public GameObject keyB;
-    //public GameObject tower;
-    //public GameObject top;
-
     public GameObject puzzleObj;
     private P_PuzzleInfo puzzleInfo;
 
     private AudioSource clearAudio;
+
+    private bool isDollPuzzle2 = false;
+
+    public GameObject keyB;
 
     private void Awake()
     {
@@ -21,10 +21,11 @@ public class P_PuzzleClear : MonoBehaviour
         clearAudio = puzzleObj.GetComponent<AudioSource>();
     }
 
-    //private void Update()
-    //{
-    //    ClearCondition();
-    //}
+    private void Start()
+    {
+        if (gameObject.name == "DollPuzzle2")
+            isDollPuzzle2 = true;
+    }
 
     private void ClearCondition()
     {
@@ -101,10 +102,63 @@ public class P_PuzzleClear : MonoBehaviour
                     Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
                     foreach (Collider2D collider in colliders)
                         collider.enabled = false;
-                    
+
+                    if (isDollPuzzle2 == true)
+                        P_GameManager.instance.Set_dollClear();
+
                     Destroy(this);
                 }
             }
+        }
+    }
+
+    public void CheckClear_TopPuzzle()
+    {
+        P_Rotation[] scripts = transform.GetComponentsInChildren<P_Rotation>();
+        length = scripts.Length;
+        foreach (P_Rotation script in scripts)
+        {
+            if (script.isRotation == false)
+                break;
+            else
+            {
+                if (script == scripts[length - 1])
+                {
+                    puzzleInfo.IsClear_true();
+                    clearAudio.Play();
+
+                    Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+                    foreach (Collider2D collider in colliders)
+                        collider.enabled = false;
+
+                    P_GameManager.instance.Set_topClear();
+
+                    Destroy(this);
+                }
+            }
+        }
+    }
+
+    public void CheckClear_TowerPuzzle()
+    {
+        P_TowerClearZone clear = transform.GetComponentInChildren<P_TowerClearZone>();
+        if (clear.isRight == true)
+        {
+            puzzleInfo.IsClear_true();
+            clearAudio.Play();
+
+            Rigidbody2D[] rigs = GetComponentsInChildren<Rigidbody2D>();
+            foreach (Rigidbody2D rig in rigs)
+                Destroy(rig);
+
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+            foreach (Collider2D collider in colliders)
+                collider.enabled = false;
+
+            keyB.SetActive(true);
+
+            Destroy(clear);
+            Destroy(this);
         }
     }
 }

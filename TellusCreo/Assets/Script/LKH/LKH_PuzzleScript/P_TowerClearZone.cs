@@ -5,12 +5,19 @@ using UnityEngine;
 public class P_TowerClearZone : MonoBehaviour
 {
     public bool isRight;
-    public bool isContect;
-    public bool isColliderMove;
-    public GameObject contectObj;
+    private bool isContect;
+    private bool isColliderMove;
+    private GameObject contectObj;
 
-    public float time;
-    public Vector3 colliderLastPos;
+    private float time;
+    private Vector3 colliderLastPos;
+
+    private P_PuzzleClear clearCondition;
+
+    private void Awake()
+    {
+        clearCondition = transform.GetComponentInParent<P_PuzzleClear>();
+    }
 
     private void Start()
     {
@@ -49,6 +56,7 @@ public class P_TowerClearZone : MonoBehaviour
             if(colliderLastPos == contectObj.transform.position)
             {
                 isRight = true;
+                clearCondition.CheckClear_TowerPuzzle();
             }
             else
             {

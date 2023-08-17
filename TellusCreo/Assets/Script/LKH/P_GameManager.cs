@@ -9,6 +9,7 @@ public class P_GameManager : MonoBehaviour
 
     public bool isDown;
     public bool isUp;
+    public bool isUp_nonCollider;
     public RaycastHit2D downHit;
     public RaycastHit2D upHit;
 
@@ -30,11 +31,12 @@ public class P_GameManager : MonoBehaviour
     {
         isDown = false;
         isUp = false;
+        isUp_nonCollider = false;
 
         isGetKeyA = false;
         isGetKeyB = false;
         wireConnect = false;
-        dollClear = true;
+        dollClear = false;
         topClear = false;
     }
 
@@ -69,10 +71,22 @@ public class P_GameManager : MonoBehaviour
                 upHit = Physics2D.Raycast(upRay.origin, upRay.direction);
 
                 if (upHit.collider != null)
+                {
                     isUp = true;
+                    isUp_nonCollider = false;
+                }
+                else
+                {
+                    isUp = false;
+                    isUp_nonCollider = true;
+                }
             }
         }
-        else { isUp = false; }
+        else
+        {
+            isUp = false;
+            isUp_nonCollider = false;
+        }
     }
 
     public void Set_isGetKeyA() 
@@ -99,11 +113,19 @@ public class P_GameManager : MonoBehaviour
 
     public bool Get_wireConnect() { return wireConnect; }
 
-    public void Set_dollClear() { dollClear = true; }
+    public void Set_dollClear() 
+    { 
+        dollClear = true;
+        Debug.Log("clear doll puzzle");
+    }
 
     public bool Get_dollClear() { return dollClear; }
 
-    public void Set_topClear() { topClear = true; }
+    public void Set_topClear() 
+    { 
+        topClear = true;
+        Debug.Log("clear top puzzle");
+    }
 
     public bool Get_topClear() { return topClear; }
 }

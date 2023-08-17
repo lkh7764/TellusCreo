@@ -9,7 +9,7 @@ public class P_IsRightPos : MonoBehaviour
     public bool isTrigger;
     public bool isRight;
 
-    public P_PuzzleClear clearCondition;
+    private P_PuzzleClear clearCondition;
 
     private void Awake()
     {
