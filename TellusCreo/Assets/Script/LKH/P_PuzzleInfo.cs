@@ -11,10 +11,14 @@ public class P_PuzzleInfo: MonoBehaviour
 
     private bool isActive;
     private bool isClear;
-    private bool hasClear;
+    private bool hasClear = false;
 
-    private bool isDollPuzzle;
+    // 놀이방 조건
+    private bool isDollPuzzle = false;
     private GameObject dollClear;
+
+    // 서재방 조건
+    private bool isLaptop;
 
     private void Start()
     {
@@ -29,16 +33,15 @@ public class P_PuzzleInfo: MonoBehaviour
             hasClear = true;
             puzzleClear.SetActive(false);
         }
-        else
-            hasClear = false;
 
         if (puzzleObj.name == "DollPuzzle")
         {
             isDollPuzzle = true;
             dollClear = GameObject.Find("DollClear");
         }
-        else
-            isDollPuzzle = false;
+
+        if (gameObject.name == "laptop_object")
+            isLaptop = true;
     }
 
     public void IsActive_true()

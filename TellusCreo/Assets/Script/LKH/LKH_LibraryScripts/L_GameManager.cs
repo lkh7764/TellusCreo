@@ -12,6 +12,9 @@ public class L_GameManager : MonoBehaviour
     public RaycastHit2D downHit;
     public RaycastHit2D upHit;
 
+    private bool isGetFinalItem;
+    private bool bookClear;
+
     private void Awake()
     {
         if (instance == null)
@@ -24,6 +27,9 @@ public class L_GameManager : MonoBehaviour
     {
         isDown = false;
         isUp = false;
+
+        isGetFinalItem = false;
+        bookClear = false;
     }
 
     void Update()
@@ -63,4 +69,20 @@ public class L_GameManager : MonoBehaviour
         else
             isUp = false;
     }
+
+    public void Set_isGetFinalItem()
+    {
+        isGetFinalItem = true;
+        Debug.Log("Get 'Water'");
+    }
+
+    public bool Get_isGetFinalItem() { return isGetFinalItem; }
+
+    public void Set_bookClear()
+    {
+        bookClear = true;
+        Debug.Log("Book Puzzle Clear");
+    }
+
+    public bool Get_bookClear() { return bookClear; }
 }

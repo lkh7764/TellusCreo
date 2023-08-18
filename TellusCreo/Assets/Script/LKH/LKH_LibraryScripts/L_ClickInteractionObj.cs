@@ -2,47 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class L_ClickItem : MonoBehaviour
+public class L_ClickInteractionObj : MonoBehaviour
 {
-    private AudioSource itemSound;
+    public GameObject pair;
+    private AudioSource objSound;
 
-    private bool finalItem = false;
+    private bool isBookDrawer = false;
 
     private void Awake()
     {
-        itemSound = GetComponent<AudioSource>();
+        objSound = GetComponent<AudioSource>();
     }
 
-    private void Start()
+    void Start()
     {
-        if (gameObject.name == "item_final_water")
-            finalItem = true;
+        if (gameObject.name == "bookDrawer_close")
+            isBookDrawer = true;
     }
 
     void Update()
     {
-        PlayerInput();
-    }
-
-    private void PlayerInput()
-    {
         if (L_GameManager.instance.isUp == true)
         {
             RaycastHit2D upHit = L_GameManager.instance.upHit;
-
-            if (finalItem == true)
-            {
-                L_GameManager.instance.Set_isGetFinalItem();
-
-                gameObject.SetActive(false);
-            }
 
             int childNum = transform.childCount;
             if (childNum == 0)
             {
                 if (System.Object.ReferenceEquals(upHit.collider.gameObject, gameObject))
                 {
-                    Debug.Log("get " + name);
+                    if(isBookDrawer == true)
+                    {
+                        if (L_GameManager.instance.Get_bookClear() == false)
+                        {
+                            objSound.Play();
+                            return;
+                        }
+                    }
+
+                    pair.SetActive(true);
                     gameObject.SetActive(false);
                 }
             }
@@ -50,9 +48,13 @@ public class L_ClickItem : MonoBehaviour
             {
                 for (int i = 0; i < childNum; i++)
                 {
+                    // 인벤토리 설정에 따라 조건 바꾸기
+                    if (transform.GetChild(i).CompareTag("P_item"))
+                        continue;
+
                     if (System.Object.ReferenceEquals(upHit.collider.gameObject, transform.GetChild(i).gameObject))
                     {
-                        Debug.Log("get " + name);
+                        pair.SetActive(true);
                         gameObject.SetActive(false);
                     }
                 }
