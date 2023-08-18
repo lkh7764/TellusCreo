@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Playroom.unity
     guid: ab0dedaa295cf72419d23943c03a2185
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/livingroom.unity
     guid: a0af518d78750724698ca255d3809687
   - enabled: 0

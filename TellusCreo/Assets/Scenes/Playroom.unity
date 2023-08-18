@@ -2136,7 +2136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 0}
 --- !u!1 &150267445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,6 +3820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!82 &233445894
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7889,6 +7889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!1 &591141694
 GameObject:
   m_ObjectHideFlags: 0
@@ -8193,6 +8194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 1899592551}
 --- !u!61 &618208603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9916,6 +9918,7 @@ Transform:
   - {fileID: 1885227646}
   - {fileID: 1829769499}
   - {fileID: 140412350}
+  - {fileID: 2038595200}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10389,7 +10392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &798880286
 GameObject:
   m_ObjectHideFlags: 0
@@ -11224,7 +11226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &874552033
 GameObject:
   m_ObjectHideFlags: 0
@@ -11612,7 +11613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 0}
 --- !u!1 &885930274
 GameObject:
   m_ObjectHideFlags: 0
@@ -11790,6 +11790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!70 &887145859
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -12853,7 +12854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &1028213585
 GameObject:
   m_ObjectHideFlags: 0
@@ -13049,6 +13049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!82 &1051456973
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14024,7 +14025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &1090791197
 GameObject:
   m_ObjectHideFlags: 0
@@ -15844,6 +15844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!61 &1250600342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16406,7 +16407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &1289667080
 GameObject:
   m_ObjectHideFlags: 0
@@ -17437,6 +17437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1408158562}
+  - component: {fileID: 1408158563}
   m_Layer: 0
   m_Name: ToyboxPuzzle
   m_TagString: Untagged
@@ -17464,6 +17465,20 @@ Transform:
   m_Father: {fileID: 1808582820}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408158563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408158561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c51e9644cbfbb3428f5df34ef342ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleObj: {fileID: 127027724}
+  keyB: {fileID: 0}
 --- !u!1 &1411560406
 GameObject:
   m_ObjectHideFlags: 0
@@ -17544,7 +17559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 798880286}
 --- !u!1 &1442347101
 GameObject:
   m_ObjectHideFlags: 0
@@ -19271,6 +19285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!70 &1607790897
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -19730,6 +19745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!82 &1635013176
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22089,6 +22105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!1 &1829769498
 GameObject:
   m_ObjectHideFlags: 0
@@ -23455,6 +23472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!82 &1920633513
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24110,7 +24128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ced335156b3749b475f36f955970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayControl: {fileID: 0}
 --- !u!1 &1959833414
 GameObject:
   m_ObjectHideFlags: 0
@@ -25255,6 +25272,174 @@ MonoBehaviour:
   puzzleClear: {fileID: 0}
   puzzleWindow: {fileID: 0}
   dollClear: {fileID: 0}
+--- !u!1 &2038595199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038595200}
+  - component: {fileID: 2038595201}
+  - component: {fileID: 2038595203}
+  - component: {fileID: 2038595202}
+  m_Layer: 0
+  m_Name: finalDoor_object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038595200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038595199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.38, y: 0.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 723095984}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2038595201
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038595199}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 8}
+  m_EdgeRadius: 0
+--- !u!82 &2038595202
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038595199}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: cacb928bd57b94c42b9a03200fed923d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2038595203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038595199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!1001 &2040029400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26351,6 +26536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5648dcc9d10ad4d4e82b91bb7523ca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_after: {fileID: 0}
 --- !u!82 &2129852190
 AudioSource:
   m_ObjectHideFlags: 0

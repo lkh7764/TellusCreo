@@ -19,6 +19,8 @@ public class P_GameManager : MonoBehaviour
     private bool dollClear;
     private bool topClear;
 
+    private bool isGetFinalItem;
+
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +40,8 @@ public class P_GameManager : MonoBehaviour
         wireConnect = false;
         dollClear = false;
         topClear = false;
+
+        isGetFinalItem = false;
     }
 
     void Update()
@@ -128,4 +132,12 @@ public class P_GameManager : MonoBehaviour
     }
 
     public bool Get_topClear() { return topClear; }
+
+    public void Set_isGetFinalItem()
+    {
+        isGetFinalItem = true;
+        Debug.Log("get final item");
+    }
+
+    public bool Get_isGetFinalItem() { return isGetFinalItem; }
 }

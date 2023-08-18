@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class P_ToyBox : MonoBehaviour
 {
-    public GameObject rayControl;
+    private P_Camera cameraController;
+    
     private int num = 1;
 
-
-    private void Start()
+    private void Awake()
     {
-        if (!(rayControl.GetComponent<P_GameManager>().Get_topClear()))
+        cameraController = FindObjectOfType<P_Camera>();
+    }
+
+    private void OnEnable()
+    {
+        if (cameraController.nowPuzzle.Get_IsClear() == true)
+            return;
+
+        if (P_GameManager.instance.Get_topClear() == false)
         {
-            this.transform.GetComponentInChildren<Collider2D>().enabled = false;
+            transform.GetComponentInChildren<Collider2D>().enabled = false;
+            return;
         }
+
+        transform.GetComponentInChildren<Collider2D>().enabled = true;
+        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.transform.GetChild(1).gameObject.SetActive(true);
+        this.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     private void Update()
@@ -23,25 +37,21 @@ public class P_ToyBox : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (rayControl.GetComponent<P_GameManager>().isUp == true)
+        if (P_GameManager.instance.isUp == true)
         {
-            RaycastHit2D upHit = rayControl.GetComponent<P_GameManager>().upHit;
-            if (upHit)
+            GameObject upHit = P_GameManager.instance.upHit.collider.gameObject;
+            // 여기서 오류가 발생. > hierachy창에서 수정하니까 됨. 근데 왜 된거지?
+            if (System.Object.ReferenceEquals(gameObject, upHit.transform.parent.gameObject))
             {
-                Debug.Log(upHit.collider.gameObject.name);
-                // 여기서 오류가 발생. > hierachy창에서 수정하니까 됨. 근데 왜 된거지?
-                if (System.Object.ReferenceEquals(this.transform.gameObject, upHit.collider.gameObject.transform.parent.gameObject))
+                num++;
+                if (num >= 3)
+                    num = 0;
+
+                for (int i = 0; i < 3; i++)
                 {
-                    Debug.Log("asdf");
-                    num++;
-                    if (num >= 3)
-                        num = 0;
-                    for (int i=0; i<3; i++)
-                    {
-                        this.transform.GetChild(i).gameObject.SetActive(false);
-                        if(i == num)
-                            this.transform.GetChild(i).gameObject.SetActive(true);
-                    }
+                    this.transform.GetChild(i).gameObject.SetActive(false);
+                    if (i == num)
+                        this.transform.GetChild(i).gameObject.SetActive(true);
                 }
             }
         }

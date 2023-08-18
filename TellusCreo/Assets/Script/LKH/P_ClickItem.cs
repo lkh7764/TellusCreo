@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class P_ClickItem : MonoBehaviour
 {
-    private bool isToyboxPuzzle;
-    private GameObject toy_after;
+    private bool isToyboxPuzzle = false;
+    public GameObject toy_after;
     private P_PuzzleInfo toyInfo;
 
     private bool keyA = false;
     private bool keyB = false;
+    private bool finalItem = false;
+    private bool finalDoor = false;
 
     private void Awake()
     {
@@ -18,17 +21,16 @@ public class P_ClickItem : MonoBehaviour
 
     private void Start()
     {
-        if (this.name == "puzzle_toybox_cover")
-        {
+        if (gameObject.name == "puzzle_toybox_cover")
             isToyboxPuzzle = true;
-            toy_after = GameObject.Find("ToyBoxAfter");
-        }
-        else if (this.name == "item_keyA")
-            keyA = true; 
-        else if (this.name == "item_keyB") 
-            keyB = true; 
-        else
-            isToyboxPuzzle = false;
+        else if (gameObject.name == "item_keyA")
+            keyA = true;
+        else if (gameObject.name == "item_keyB")
+            keyB = true;
+        else if (gameObject.name == "item_final_soil")
+            finalItem = true;
+        else if (gameObject.name == "finalDoor_object")
+            finalDoor = true;
     }
 
     void Update()
@@ -48,6 +50,26 @@ public class P_ClickItem : MonoBehaviour
                     toyInfo.IsActive_false();
                     toyInfo.puzzleWindow = toy_after;
                     toyInfo.IsActive_true();
+                    return;
+                }               
+                else if (finalItem == true)
+                {
+                    P_GameManager.instance.Set_isGetFinalItem();
+                    gameObject.SetActive(false);
+                    return;
+                }
+                else if (finalDoor == true)
+                {
+                    bool isPlayroomClear = P_GameManager.instance.Get_isGetFinalItem();
+                    if(isPlayroomClear == true)
+                    {
+                        SceneManager.LoadScene("livingroom");
+                    }
+                    else
+                    {
+                        Debug.Log("need final item");
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
                 else
                 {
@@ -60,6 +82,7 @@ public class P_ClickItem : MonoBehaviour
 
                         GetComponent<SpriteRenderer>().enabled = false;
                         GetComponent<Collider2D>().enabled = false;
+                        return;
                     }
                     else
                         gameObject.SetActive(false);
