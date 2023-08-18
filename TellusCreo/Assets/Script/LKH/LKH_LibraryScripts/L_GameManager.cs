@@ -14,6 +14,7 @@ public class L_GameManager : MonoBehaviour
 
     private bool isGetFinalItem;
     private bool bookClear;
+    private bool symmetryClear;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class L_GameManager : MonoBehaviour
 
         isGetFinalItem = false;
         bookClear = false;
+        symmetryClear = true;
     }
 
     void Update()
@@ -85,4 +87,12 @@ public class L_GameManager : MonoBehaviour
     }
 
     public bool Get_bookClear() { return bookClear; }
+
+    public void Set_symmetryClear()
+    {
+        symmetryClear = false;
+        Debug.Log("Symmetry Puzzle Clear");
+    }
+
+    public bool Get_symmetryClear() { return symmetryClear; }
 }

@@ -43,6 +43,7 @@ public class L_ClickItem : MonoBehaviour
                 if (System.Object.ReferenceEquals(upHit.collider.gameObject, gameObject))
                 {
                     Debug.Log("get " + name);
+                    itemSound.Play();
                     gameObject.SetActive(false);
                 }
             }
