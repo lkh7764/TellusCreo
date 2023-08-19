@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Ball
   m_EditorClassIdentifier: 
   itemName: Ball
-  icon: {fileID: 21300000, guid: ec01ca11b89d4144eb981ffe72450615, type: 3}
+  icon: {fileID: 21300000, guid: fa2bfb11a593601449c51784532e8b2f, type: 3}
+  interactTag: 
