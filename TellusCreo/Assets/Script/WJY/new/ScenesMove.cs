@@ -9,8 +9,9 @@ public class ScenesMove : MonoBehaviour
 
     public string sceneName;
 
-    private void OnMouseDown()
+    private void Update()
     {
         SceneManager.LoadScene(sceneName);
     }
+
 }

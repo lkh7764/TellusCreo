@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ItemPickup : MonoBehaviour
 {
@@ -10,20 +11,16 @@ public class ItemPickup : MonoBehaviour
     void Pickup()
     {
         InventoryManager.Instance.Add(Item);
+        
         Destroy(gameObject);
     }
-    public void OnItemClick()
-    {
-        // 클릭한 아이템 정보를 DragAndDrop 스크립트의 item 변수에 할당합니다.
-        DragAndDrop dragAndDropScript = FindObjectOfType<DragAndDrop>();
-        //if (dragAndDropScript != null)
-        //{
-        //    dragAndDropScript.SetCurrentItem(Item);
-        //}
-    }
+
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         Pickup();
     }
 }
