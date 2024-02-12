@@ -52,5 +52,7 @@ public class P_PuzzleInfo : MonoBehaviour
         }
     }
 
+
+
     public bool Get_isClear() { return isClear; }
 }

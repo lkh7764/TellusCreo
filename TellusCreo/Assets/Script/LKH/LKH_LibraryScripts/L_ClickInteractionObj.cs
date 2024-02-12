@@ -2,39 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+enum Obj { BookDrawer, PlantDrawer, SymRightDrawer, SymLeftDrawer }
+
 public class L_ClickInteractionObj : MonoBehaviour
 {
     public GameObject pair;
     private AudioSource objSound;
 
-    private bool isBookDrawer = false;
-
-    private bool isPlantDrawer = false;
-    private bool isLocked_plant = false;
-
-    private bool isSymmetryDrawer = false;
+    [SerializeField] private Obj obj;
 
     private void Awake()
     {
         objSound = GetComponent<AudioSource>();
-    }
-
-    void Start()
-    {
-        if (gameObject.name == "bookDrawer_close")
-            isBookDrawer = true;
-
-        else if (gameObject.name == "plantDrawer_close")
-        {
-            isPlantDrawer = true;
-            isLocked_plant = true;
-        }
-
-        else if (gameObject.name == "plantDrawer_open")
-            isPlantDrawer = true;
-
-        else if (gameObject.name == "symmetryDrawer_close")
-            isSymmetryDrawer = true;
     }
 
     void Update()
@@ -43,23 +23,16 @@ public class L_ClickInteractionObj : MonoBehaviour
         {
             RaycastHit2D upHit = L_GameManager.instance.upHit;
             int childNum = transform.childCount;
-
             if (childNum == 0)
             {
                 ChangeObj_nonChild(upHit);
                 return;
             }
-            else
-            {
-                if (isPlantDrawer == true)
-                {
-                    ChangeObj_nonChild(upHit);
-                    return;
-                }
 
+            if (obj == Obj.PlantDrawer)
+                ChangeObj_nonChild(upHit);
+            else
                 ChangeObj_child(upHit, childNum);
-                return;
-            }
         }
     }
 
@@ -67,31 +40,37 @@ public class L_ClickInteractionObj : MonoBehaviour
     {
         if (System.Object.ReferenceEquals(hit.collider.gameObject, gameObject))
         {
-            if (isBookDrawer == true)
+            switch (obj)
             {
-                if (L_GameManager.instance.Get_bookClear() == false)
-                {
-                    objSound.Play();
-                    return;
-                }
-            }
-
-            else if (isPlantDrawer == true)
-            {
-                if (isLocked_plant == true)
-                {
-                    objSound.Play();
-                    return;
-                }
-            }
-
-            else if (isSymmetryDrawer == true)
-            {
-                if (L_GameManager.instance.Get_symmetryClear() == false)
-                {
-                    objSound.Play();
-                    return;
-                }
+                case Obj.BookDrawer:
+                    if (L_GameManager.instance.Get_bookClear() == false)
+                    {
+                        objSound.Play();
+                        return;
+                    }
+                    break;
+                case Obj.PlantDrawer:
+                    if (L_GameManager.instance.isPlantDrawerLocked())
+                    {
+                        //objSound.Play();
+                        return;
+                    }
+                    break;
+                case Obj.SymLeftDrawer:
+                    if (L_GameManager.instance.Get_symmetryClear() == false)
+                    {
+                        //objSound.Play();
+                        return;
+                    }
+                    break;
+                case Obj.SymRightDrawer:
+                    if (L_GameManager.instance.isSymRightLock() == true)
+                    {
+                        // objSound.Play();
+                        Debug.Log("symRight Locked");
+                        return;
+                    }
+                    break;
             }
 
             pair.SetActive(true);
@@ -115,6 +94,4 @@ public class L_ClickInteractionObj : MonoBehaviour
             }
         }
     }
-
-    public void Set_isLocked_plant() { isLocked_plant = false; }
 }

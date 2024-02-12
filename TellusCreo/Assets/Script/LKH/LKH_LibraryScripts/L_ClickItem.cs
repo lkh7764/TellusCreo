@@ -1,20 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class L_ClickItem : MonoBehaviour
 {
-    [SerializeField] private bool hasPair = false;
+    [SerializeField] private GameObject pair;
+    private bool hasPair;
 
-    private void OnDestroy()
+    public Item Item;
+
+
+    private void Awake()
     {
+        if (pair == null)
+            hasPair = false;
+        else
+            hasPair = true;
+    }
+
+    public void Pickup()
+    {
+        InventoryManager.Instance.Add(Item);
+
         Debug.Log("asdf");
-        if(SoundManager.Instance != null)
-        SoundManager.Instance.Play("item_get");
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.Play("item_get");
 
         if (hasPair)
-        {
-            transform.parent.gameObject.SetActive(false);
-        }
+            Destroy(pair);
+
+        Destroy(gameObject);
+    }
+
+
+    private void OnMouseUp()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        if (!CompareTag("P_item"))
+            return;
+
+        Pickup();
     }
 }

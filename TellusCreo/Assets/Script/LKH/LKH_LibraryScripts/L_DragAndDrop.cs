@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class L_DragAndDrop : MonoBehaviour
 {
-    private SpriteRenderer objectRenderer;
+    protected SpriteRenderer objectRenderer;
     private int layer_S;
     private int layer_NS;
 
@@ -15,13 +15,12 @@ public class L_DragAndDrop : MonoBehaviour
 
     private void Start()
     {
-        this.tag = "P_stop";
         layer_S = SortingLayer.NameToID("P_Select");
         layer_NS = SortingLayer.NameToID("P_NotSelect");
         ChangeLayer(30);
     }
 
-    private void ChangeLayer(int layerNum)
+    protected void ChangeLayer(int layerNum)
     {
         if (layerNum == 30)
         {
@@ -35,16 +34,16 @@ public class L_DragAndDrop : MonoBehaviour
         }
     }
 
-    protected virtual void OnMouseDrag()
-    {
-        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        transform.position = objectPosition;
-    }
+    //protected virtual void OnMouseDrag()
+    //{
+    //    Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+    //    Vector2 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+    //    transform.position = objectPosition;
+    //}
 
     private void Update()
     {
-        PlayerInput();
+        //PlayerInput();
     }
 
     private void PlayerInput()
@@ -67,4 +66,15 @@ public class L_DragAndDrop : MonoBehaviour
             ChangeLayer(30);
         }
     }
+
+    //private void OnMouseDown()
+    //{
+    //    this.tag = "P_move";
+    //    ChangeLayer(31);
+    //}
+    //private void OnMouseUp()
+    //{
+    //    this.tag = "P_stop";
+    //    ChangeLayer(30);
+    //}
 }

@@ -59,11 +59,16 @@ public class L_ChangePos : MonoBehaviour
             GameObject downHit = L_GameManager.instance.downHit.collider.gameObject;
             if (System.Object.ReferenceEquals(gameObject, downHit))
             {
-                isSet = false;
-                beforePos = this.transform.localPosition;
-                checkLayer = 1;
+
             }
         }
+    }
+
+    private void OnMouseDown()
+    {
+        isSet = false;
+        beforePos = this.transform.localPosition;
+        checkLayer = 1;
     }
 
     public void LateUpdate()
@@ -73,12 +78,9 @@ public class L_ChangePos : MonoBehaviour
         else
             isMove = false;
 
-        PlayerInput();
+        //PlayerInput();
 
         if (checkLayer == 1 && !isMove)
             startOnTrig = true;
-
-        //if (checkLayer == 2)
-        //    startOnTrig = true;
     }
 }

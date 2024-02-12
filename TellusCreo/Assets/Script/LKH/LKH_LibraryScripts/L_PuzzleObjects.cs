@@ -40,12 +40,10 @@ public class L_PuzzleObjects : MonoBehaviour
 
     void Update()
     {
-        if(L_GameManager.instance.isUp)
-        {
-            RaycastHit2D hit = L_GameManager.instance.upHit;
-            P_PuzzleInfo clickPuzzle = CheckObj(hit);
-            if (clickPuzzle != null)
-                P_Camera.instance.PlayPuzzle(clickPuzzle);
-        }
+        if (!L_GameManager.instance.isUp) return;
+        RaycastHit2D hit = L_GameManager.instance.upHit;
+        P_PuzzleInfo clickPuzzle = CheckObj(hit);
+        if (clickPuzzle != null)
+            P_Camera.instance.PlayPuzzle(clickPuzzle);
     }
 }

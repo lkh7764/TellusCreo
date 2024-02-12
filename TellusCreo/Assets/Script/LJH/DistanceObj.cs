@@ -7,19 +7,32 @@ public class DistanceObj : MonoBehaviour
 {
     private float Dist; //양초 오브젝트와의 거리
     public GameObject candle; //양초 오브젝트
+    [SerializeField] static private int standard = 1;
 
     SpriteRenderer sr;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        sr.material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
     }
 
     void Update()
     {
         Dist = Vector2.Distance(candle.transform.position, transform.position);
 
-        ObjDist();
+        //ObjDist();
+        if (Dist > standard) return;
+        ShowObj();
+    }
+
+    private void ShowObj()
+    {
+        float std = 0.1f * standard;
+        int num = (int)((standard - Dist) / std);
+        float alpha = 0.1f * num;
+
+        sr.material.color = new Color(1.0f, 1.0f, 1.0f, alpha);
     }
 
     private void ObjDist()// 오브젝트의 거리에 따라 숨겨진 글씨의 투명도가 조절되는 함수

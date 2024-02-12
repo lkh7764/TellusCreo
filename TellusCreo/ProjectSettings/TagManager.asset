@@ -16,7 +16,6 @@ TagManager:
   - Background3
   - Pass1
   - Pass3
-  - Book
   - Pass2
   - TextFolder
   - StartFolder
@@ -61,6 +60,23 @@ TagManager:
   - KeyB
   - Concent
   - Ball
+  - Cup
+  - Book
+  - Candle
+  - PlantKey
+  - L_end
+  - L_select
+  - L_start
+  - WaterCup
+  - Trophy
+  - Folder
+  - Book1
+  - Book2
+  - Book3
+  - Book4
+  - Book5
+  - Book6
+  - Sym
   layers:
   - Default
   - TransparentFX

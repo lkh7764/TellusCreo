@@ -18,6 +18,8 @@ public class P_Camera : MonoBehaviour
     public P_PuzzleInfo nowPuzzle;
 
     public bool isPlayPuzzle;
+    private bool hint;
+    private GameObject previousWindow;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class P_Camera : MonoBehaviour
         nowPuzzle = null;
 
         isPlayPuzzle = false;
+        hint = false;
+        previousWindow = null;
     }
 
     public void MoveSide(int direction)
@@ -78,8 +82,34 @@ public class P_Camera : MonoBehaviour
         isPlayPuzzle = true;
     }
 
+    public void ShowHintWindow(GameObject hintWindow)
+    {
+        previousWindow = nowPuzzle.puzzleWindow;
+        previousWindow.SetActive(false);
+        nowPuzzle.puzzleWindow = hintWindow;
+        nowPuzzle.puzzleWindow.SetActive(true);
+
+        hint = true;
+    }
+
+    private void CloseHintWindow()
+    {
+        nowPuzzle.puzzleWindow.SetActive(false);
+        nowPuzzle.puzzleWindow = previousWindow;
+        previousWindow = null;
+        nowPuzzle.puzzleWindow.SetActive(true);
+
+        hint = false;
+    }
+
     public void ExtiPuzzle()
     {
+        if (hint)
+        {
+            CloseHintWindow();
+            return;
+        }
+
         if (nowPuzzle != null)
         {
             //transform.position = new Vector3(sidePos_x, 0f, -10f);

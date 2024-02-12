@@ -12,9 +12,27 @@ public class L_GameManager : MonoBehaviour
     public RaycastHit2D downHit;
     public RaycastHit2D upHit;
 
+    [SerializeField] private bool laptopLocked;
+    [SerializeField] private bool ojakgyoClear;
+    [SerializeField] private SpriteRenderer bookBackgroundRenderer;
+    [SerializeField] private Sprite bookClearBackground;
+    [SerializeField] private GameObject backgroundBooks;
+
+    [SerializeField] private SpriteRenderer weatherRenderer;
+    [SerializeField] private Sprite[] weatherSprs;
+
     private bool isGetFinalItem;
     private bool bookClear;
     private bool symmetryClear;
+    [SerializeField] private GameObject wrongObjs;
+    [SerializeField] private GameObject rightObjs;
+
+    private bool symRightLock;
+    private bool rainy;
+
+    private bool plantDrawerLocked;
+
+    [SerializeField] private P_PuzzleInfo laptopObj;
 
     private void Awake()
     {
@@ -29,9 +47,17 @@ public class L_GameManager : MonoBehaviour
         isDown = false;
         isUp = false;
 
+        laptopLocked = true;
+        ojakgyoClear = false;
+
         isGetFinalItem = false;
         bookClear = false;
-        symmetryClear = true;
+        symmetryClear = false;
+
+        symRightLock = true;
+        rainy = false;
+
+        plantDrawerLocked = true;
 
         SoundManager.Instance.Play("library_bgm", Sound.Bgm);
     }
@@ -85,6 +111,10 @@ public class L_GameManager : MonoBehaviour
     public void Set_bookClear()
     {
         bookClear = true;
+
+        bookBackgroundRenderer.sprite = bookClearBackground;
+        backgroundBooks.SetActive(false);
+
         Debug.Log("Book Puzzle Clear");
     }
 
@@ -92,9 +122,60 @@ public class L_GameManager : MonoBehaviour
 
     public void Set_symmetryClear()
     {
-        symmetryClear = false;
+        symmetryClear = true;
+
+        wrongObjs.SetActive(false);
+        rightObjs.SetActive(true);
+
         Debug.Log("Symmetry Puzzle Clear");
     }
 
     public bool Get_symmetryClear() { return symmetryClear; }
+
+
+    public bool IsLaptopLocked() { return laptopLocked; }
+    public void Set_laptopLocked(bool value = false) 
+    {
+        laptopLocked = value;
+        Debug.Log("Laptop Locked " + laptopLocked.ToString());
+
+        laptopObj.IsClear_true();
+    }
+
+    public bool isOjakgyoClear() { return ojakgyoClear; }
+    public void Set_ojakgyoClear(bool value = true) 
+    {
+        ojakgyoClear = value;
+        Debug.Log("Ojakgyo Clear " + laptopLocked.ToString());
+    }
+
+
+    public bool isSymRightLock() { return symRightLock; }
+    public void Set_symRightLock(bool value = false)
+    {
+        symRightLock = value;
+        Debug.Log("Symmetry Right Lock " + symRightLock.ToString());
+    }
+
+
+    public bool isRainy() { return rainy; }
+    public void Set_rainy(bool value = true)
+    {
+        rainy = value;
+
+        if (rainy)
+            weatherRenderer.sprite = weatherSprs[1];
+        else
+            weatherRenderer.sprite = weatherSprs[0];
+
+        Debug.Log("Rainy " + rainy.ToString());
+    }
+
+
+    public bool isPlantDrawerLocked() { return plantDrawerLocked; }
+    public void Set_plantDrawerLocked(bool value = false)
+    {
+        plantDrawerLocked = value;
+        Debug.Log("Plant Drawer Locked " + rainy.ToString());
+    }
 }

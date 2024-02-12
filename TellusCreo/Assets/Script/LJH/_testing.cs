@@ -31,7 +31,7 @@ public class _testing : MonoBehaviour
     private void Start()
     {
         //태그 초기화.
-        this.tag = "P_stop";
+        // this.tag = "P_stop";
         //layer_S에 P_Select 저장.
         layer_S = SortingLayer.NameToID("P_Select");
         //layer_NS에 P_NotSelect 저장.
@@ -40,13 +40,6 @@ public class _testing : MonoBehaviour
         //
         //ChangeLayer(30);
     }
-
-    //PlayerInput함수로 수정.
-    //private void OnMouseDown()
-    //{
-    //    this.tag = "P_move";
-    //    ChangeLayer(31);
-    //}
 
     //화면을 드래그하고 있을 때.
     private void OnMouseDrag()
@@ -61,13 +54,6 @@ public class _testing : MonoBehaviour
 
     }
 
-    //PlayerInput함수로 수정.
-    //private void OnMouseUp()
-    //{
-    //    this.tag = "P_stop";
-    //    ChangeLayer(30);
-    //}
-
     //플레이어의 터치 입력을 감지하는 함수.
     private void PlayerInput()
     {
@@ -81,8 +67,8 @@ public class _testing : MonoBehaviour
             {
                 if (System.Object.ReferenceEquals(this.gameObject, downHit.collider.gameObject))
                 {
-                    this.tag = "P_move";
-                    Debug.Log("true");
+                    //this.tag = "P_move";
+                    //Debug.Log("true");
                     //ChangeLayer(31);
                 }
             }
@@ -96,8 +82,8 @@ public class _testing : MonoBehaviour
             {
                 if (System.Object.ReferenceEquals(this.gameObject, upHit.collider.gameObject))
                 {
-                    this.tag = "P_stop";
-                    Debug.Log("false");
+                    //this.tag = "P_stop";
+                    //Debug.Log("false");
                     //ChangeLayer(30);
                 }
             }
@@ -106,7 +92,7 @@ public class _testing : MonoBehaviour
 
     private void Update()
     {
-        PlayerInput();
+        //PlayerInput();
         
     }
 }

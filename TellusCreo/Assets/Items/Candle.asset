@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Candle
   icon: {fileID: 21300000, guid: ebccf58fd1e43cd43a9ff2201777347c, type: 3}
-  interactTag: 
+  interactTag: Candle
