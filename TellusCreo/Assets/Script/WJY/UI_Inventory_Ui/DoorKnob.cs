@@ -37,6 +37,13 @@ public class DoorKnob : MonoBehaviour
             {
                 return true;
             }
+            else if (EarthMaterial.GetInstance().GetSoilValue())
+            {
+                if (!EarthMaterial.GetInstance().GetWaterValue() && string.Equals(sceneName, "Libraryroom_lkhDevelop"))
+                {
+                    return true;
+                }
+            }
         }
 
         return false;
