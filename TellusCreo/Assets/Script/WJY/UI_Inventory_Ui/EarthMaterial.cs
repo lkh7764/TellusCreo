@@ -54,7 +54,6 @@ public class EarthMaterial : MonoBehaviour
     public void SetSunValue(bool newValue)
     {
         Sun = newValue;
-        
     }
 
     // 원하는 시점에 bool 변수 값을 얻을 수 있는 메서드를 추가할 수 있습니다.
@@ -78,7 +77,6 @@ public class EarthMaterial : MonoBehaviour
     public void SetSoilValue(bool newValue)
     {
         Soil = newValue;
-        
     }
 
 
@@ -90,7 +88,6 @@ public class EarthMaterial : MonoBehaviour
     public void SetcutValue(bool newValue)
     {
         CutS = newValue;
-
     }
 
 
@@ -98,6 +95,4 @@ public class EarthMaterial : MonoBehaviour
     {
         return CutS;
     }
-
-
 }

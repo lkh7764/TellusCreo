@@ -7,6 +7,9 @@ public class L_BookManager : MonoBehaviour
     public static L_BookManager Instance;
     private L_BookPuzzle[] books;
 
+    public GameObject backgroundBooks1;
+    public GameObject backgroundBooks2;
+
 
     private void Awake()
     {
@@ -50,6 +53,10 @@ public class L_BookManager : MonoBehaviour
     {
         foreach (L_BookPuzzle b in books)
             b.ResetPuzzle();
+
+        backgroundBooks1.SetActive(false);
+        backgroundBooks2.SetActive(true);
+
         Destroy(L_AddBooks.Instance);
     }
 }

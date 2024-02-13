@@ -13,7 +13,6 @@ public class L_on : MonoBehaviour
     [SerializeField] private L_PlantGrow plantGrow;
 
 
-
     private void Awake()
     {
         if (Instance == null)

@@ -48,7 +48,12 @@ public class L_LaptopPrograms : MonoBehaviour
         if (programRunning) return;
         GameObject obj = warningWindow;
         if (L_GameManager.instance.isOjakgyoClear())
+        {
             obj = programWindow;
+            SoundManager.Instance.Play("mouse-click-153941");
+        }
+        else
+            SoundManager.Instance.Play("puzzle_Arcade_cant_use");
 
         ShowWindow(obj);
     }

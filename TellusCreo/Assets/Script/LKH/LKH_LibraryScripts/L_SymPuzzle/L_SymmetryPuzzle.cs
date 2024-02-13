@@ -9,6 +9,8 @@ public class L_SymmetryPuzzle : MonoBehaviour
 
     [SerializeField] private GameObject trophy;
     public bool readyToPuzzle;
+
+    public SpriteRenderer back;
     
 
     private void Awake()
@@ -60,6 +62,8 @@ public class L_SymmetryPuzzle : MonoBehaviour
     {
         foreach (L_SymObj obj in objs)
             obj.Set_puzzleState();
+
+        back.enabled = true;
 
         readyToPuzzle = true;
     }

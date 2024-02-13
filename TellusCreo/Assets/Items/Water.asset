@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2befd667d737bdf44bec418727b78ed6, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Water
   icon: {fileID: 21300000, guid: 84c821c653141004f8358c3a0b619ec3, type: 3}
-  interactTag: 
+  interactTag: Water

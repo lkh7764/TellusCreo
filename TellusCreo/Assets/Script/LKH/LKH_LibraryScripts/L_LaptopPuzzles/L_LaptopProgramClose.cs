@@ -40,6 +40,8 @@ public class L_LaptopProgramClose : MonoBehaviour
     {
         if (!clicked) return;
 
+        SoundManager.Instance.Play("mouse-click-153941");
+
         L_LaptopPrograms.programRunning = false;
         clicked = false;
         spr.color = colors[0];

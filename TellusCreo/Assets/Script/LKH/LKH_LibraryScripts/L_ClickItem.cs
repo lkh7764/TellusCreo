@@ -28,7 +28,10 @@ public class L_ClickItem : MonoBehaviour
             SoundManager.Instance.Play("item_get");
 
         if (hasPair)
-            Destroy(pair);
+            pair.GetComponent<Collider2D>().enabled = false;
+
+        if (this.CompareTag("item_final_water"))
+            L_GameManager.instance.Set_getFinalItem();
 
         Destroy(gameObject);
     }
@@ -38,7 +41,7 @@ public class L_ClickItem : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (!CompareTag("P_item"))
+        if (!CompareTag("P_item") && !CompareTag("item_final_water"))
             return;
 
         Pickup();

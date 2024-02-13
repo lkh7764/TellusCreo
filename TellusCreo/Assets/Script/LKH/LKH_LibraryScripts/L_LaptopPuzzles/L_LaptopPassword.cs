@@ -67,8 +67,12 @@ public class L_LaptopPassword : MonoBehaviour
                 if (count == 4)
                     if (IsRightPassword())
                         L_GameManager.instance.Set_laptopLocked();
+                    else
+                        SoundManager.Instance.Play("puzzle_Arcade_cant_use");
                 ResetPassword();
                 break;
         }
+
+        SoundManager.Instance.Play("mouse-click-153941");
     }
 }

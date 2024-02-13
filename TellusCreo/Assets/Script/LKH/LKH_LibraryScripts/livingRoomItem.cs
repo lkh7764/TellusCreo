@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+
+public class livingRoomItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public Transform parentAfterDrag;
     private string draggedItemName;
@@ -17,22 +18,15 @@ public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public List<ItemData> inventoryItems = new List<ItemData>();
 
-    public static L_UIDragAndDrop instance;
-
-
-    private SpriteRenderer puzzleviolinRenderer;
+    public static livingRoomItem instance;
 
     private string currentItem;
-
-    private bool candle;
 
     private void Awake()
     {
         instance = this;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-
-        candle = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,16 +46,13 @@ public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             if (textComponent != null)
             {
                 textContent = textComponent.text;
-                Debug.Log(textContent);
+                Debug.Log("textContent: " + textContent);
             }
         }
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         canvasGroup.blocksRaycasts = false;
-
-        if (textContent == "Candle")
-            candle = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -88,49 +79,14 @@ public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
                 string itemName = textContent;
                 switch (textContent)
                 {
-                    case "Candle":
-                        Debug.Log("Candle End");
-                        L_Candle.Instance.Set_candle();
+                    case "Soil":
+                        Debug.Log("Soil End");
                         break;
-                    case "Cup":
-                        Debug.Log("Cup End");
-                        L_on.Instance.On1();
+                    case "Water":
+                        Debug.Log("Water End");
                         break;
-                    case "WaterCup":
-                        Debug.Log("WaterCup End");
-                        L_on.Instance.On2();
-                        break;
-                    case "PlantKey":
-                        Debug.Log("PlantKey End");
-                        L_on.Instance.On3();
-                        break;
-                    case "Trophy":
-                        Debug.Log("PlantKey End");
-                        L_SymmetryPuzzle.Instance.Set_symPuzzle();
-                        break;
-                    case "Book1":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
-                        break;
-                    case "Book2":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
-                        break;
-                    case "Book3":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
-                        break;
-                    case "Book4":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
-                        break;
-                    case "Book5":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
-                        break;
-                    case "Book6":
-                        Debug.Log("Book end");
-                        L_on.Instance.On4(textContent);
+                    case "Sun":
+                        Debug.Log("Sun End");
                         break;
                 }
                 InventoryManager.Instance.RemoveItemFromInventory(itemName);
@@ -140,7 +96,5 @@ public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
         if (this.gameObject != null)
             transform.SetParent(parentAfterDrag);
-
-        L_GameManager.instance.isUp = false;
     }
 }

@@ -21,7 +21,6 @@ public class L_GameManager : MonoBehaviour
     [SerializeField] private SpriteRenderer weatherRenderer;
     [SerializeField] private Sprite[] weatherSprs;
 
-    private bool isGetFinalItem;
     private bool bookClear;
     private bool symmetryClear;
     [SerializeField] private GameObject wrongObjs;
@@ -33,6 +32,9 @@ public class L_GameManager : MonoBehaviour
     private bool plantDrawerLocked;
 
     [SerializeField] private P_PuzzleInfo laptopObj;
+
+    private bool getFinalItem;
+
 
     private void Awake()
     {
@@ -50,7 +52,6 @@ public class L_GameManager : MonoBehaviour
         laptopLocked = true;
         ojakgyoClear = false;
 
-        isGetFinalItem = false;
         bookClear = false;
         symmetryClear = false;
 
@@ -58,6 +59,8 @@ public class L_GameManager : MonoBehaviour
         rainy = false;
 
         plantDrawerLocked = true;
+
+        getFinalItem = false;
 
         SoundManager.Instance.Play("library_bgm", Sound.Bgm);
     }
@@ -100,17 +103,11 @@ public class L_GameManager : MonoBehaviour
             isUp = false;
     }
 
-    public void Set_isGetFinalItem()
-    {
-        isGetFinalItem = true;
-        Debug.Log("Get 'Water'");
-    }
-
-    public bool Get_isGetFinalItem() { return isGetFinalItem; }
 
     public void Set_bookClear()
     {
         bookClear = true;
+        SoundManager.Instance.Play("puzzle_clear");
 
         bookBackgroundRenderer.sprite = bookClearBackground;
         backgroundBooks.SetActive(false);
@@ -123,6 +120,7 @@ public class L_GameManager : MonoBehaviour
     public void Set_symmetryClear()
     {
         symmetryClear = true;
+        SoundManager.Instance.Play("puzzle_clear");
 
         wrongObjs.SetActive(false);
         rightObjs.SetActive(true);
@@ -137,6 +135,8 @@ public class L_GameManager : MonoBehaviour
     public void Set_laptopLocked(bool value = false) 
     {
         laptopLocked = value;
+        if (laptopLocked == false)
+            SoundManager.Instance.Play("puzzle_Arcade_button");
         Debug.Log("Laptop Locked " + laptopLocked.ToString());
 
         laptopObj.IsClear_true();
@@ -146,6 +146,8 @@ public class L_GameManager : MonoBehaviour
     public void Set_ojakgyoClear(bool value = true) 
     {
         ojakgyoClear = value;
+        if (ojakgyoClear == true)
+            SoundManager.Instance.Play("puzzle_clear");
         Debug.Log("Ojakgyo Clear " + laptopLocked.ToString());
     }
 
@@ -154,6 +156,8 @@ public class L_GameManager : MonoBehaviour
     public void Set_symRightLock(bool value = false)
     {
         symRightLock = value;
+        if (symRightLock == false)
+            SoundManager.Instance.Play("puzzle_Arcade_button");
         Debug.Log("Symmetry Right Lock " + symRightLock.ToString());
     }
 
@@ -177,5 +181,12 @@ public class L_GameManager : MonoBehaviour
     {
         plantDrawerLocked = value;
         Debug.Log("Plant Drawer Locked " + rainy.ToString());
+    }
+
+    public bool IsGetFinalItem() { return getFinalItem; }
+    public void Set_getFinalItem() 
+    {
+        getFinalItem = true;
+        Debug.Log("LibraryClear");
     }
 }

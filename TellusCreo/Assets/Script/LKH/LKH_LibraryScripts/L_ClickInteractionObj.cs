@@ -1,21 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
-enum Obj { BookDrawer, PlantDrawer, SymRightDrawer, SymLeftDrawer }
+enum Obj { BookDrawer, PlantDrawer, SymRightDrawer, SymLeftDrawer, Door }
 
 public class L_ClickInteractionObj : MonoBehaviour
 {
     public GameObject pair;
-    private AudioSource objSound;
-
     [SerializeField] private Obj obj;
 
-    private void Awake()
-    {
-        objSound = GetComponent<AudioSource>();
-    }
 
     void Update()
     {
@@ -43,31 +38,49 @@ public class L_ClickInteractionObj : MonoBehaviour
             switch (obj)
             {
                 case Obj.BookDrawer:
-                    if (L_GameManager.instance.Get_bookClear() == false)
+                    if (!L_GameManager.instance.Get_bookClear())
                     {
-                        objSound.Play();
+                        SoundManager.Instance.Play("door_locked");
                         return;
                     }
+                    SoundManager.Instance.Play("open_lockedDoor");
                     break;
                 case Obj.PlantDrawer:
                     if (L_GameManager.instance.isPlantDrawerLocked())
                     {
-                        //objSound.Play();
+                        SoundManager.Instance.Play("door_locked");
                         return;
                     }
+                    SoundManager.Instance.Play("door_sliding");
                     break;
                 case Obj.SymLeftDrawer:
-                    if (L_GameManager.instance.Get_symmetryClear() == false)
+                    if (!L_GameManager.instance.Get_symmetryClear())
                     {
-                        //objSound.Play();
+                        SoundManager.Instance.Play("door_locked");
                         return;
                     }
+                    SoundManager.Instance.Play("open_lockedDoor");
                     break;
                 case Obj.SymRightDrawer:
-                    if (L_GameManager.instance.isSymRightLock() == true)
+                    if (L_GameManager.instance.isSymRightLock())
                     {
-                        // objSound.Play();
+                        SoundManager.Instance.Play("door_locked");
                         Debug.Log("symRight Locked");
+                        return;
+                    }
+                    SoundManager.Instance.Play("open_lockedDoor");
+                    break;
+                case Obj.Door:
+                    if (L_GameManager.instance.IsGetFinalItem())
+                    {
+                        SoundManager.Instance.Play("open_lockedDoor");
+
+                        EarthMaterial.GetInstance().SetWaterValue(true);
+                        SceneManager.LoadScene("livingroom");
+                    }
+                    else
+                    {
+                        SoundManager.Instance.Play("door_locked");
                         return;
                     }
                     break;

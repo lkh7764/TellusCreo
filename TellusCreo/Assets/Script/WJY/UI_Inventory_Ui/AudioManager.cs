@@ -81,8 +81,11 @@ public class AudioManager : MonoBehaviour
             Onmutebutton.SetActive(true);
             Offmutebutton.SetActive(false);
         }
-
-        
+        else
+        {
+            Onmutebutton.SetActive(false);
+            Offmutebutton.SetActive(true);
+        }
     }
     private void ChangeVolume(float volume)
     {
@@ -119,19 +122,13 @@ public class AudioManager : MonoBehaviour
     {
         if (volumeSlider.value > 0)
         {
-
             volumeSlider.value = 0;
         }
         else
         {
-
             volumeSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.1f);
-            
         }
 
         ChangeVolume(volumeSlider.value);
     }
-
-    
-
 }

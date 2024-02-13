@@ -6,17 +6,47 @@ public class SetEarth : MonoBehaviour
     public GameObject Soilobj;
     public GameObject Waterobj;
 
+    public Item sunItem;
+    public Item waterItem;
+    public Item soilItem;
+
     public bool sunbool;
     public bool soilobj;
     public bool waterbool;
     void Start()
     {
-        UpdateEarthObjects();
+        //UpdateEarthObjects();
+        UpdateItem();
+
+        sunbool = false;
+        soilobj = false;
+        waterbool = false;
     }
 
     private void OnEnable()
     {
-        UpdateEarthObjects();
+        //UpdateEarthObjects();
+        UpdateItem();
+    }
+
+    public void UpdateItem()
+    {
+        EarthMaterial earthMaterial = EarthMaterial.GetInstance();
+        if (earthMaterial.GetSoilValue() && !soilobj)
+        {
+            InventoryManager.Instance.Add(soilItem);
+            soilobj = true;
+        }
+        if (earthMaterial.GetWaterValue() && !waterbool)
+        {
+            InventoryManager.Instance.Add(waterItem);
+            waterbool = true;
+        }
+        if (earthMaterial.GetSunValue() && sunbool)
+        {
+            InventoryManager.Instance.Add(sunItem);
+            sunbool = true;
+        }
     }
 
     public void UpdateEarthObjects()

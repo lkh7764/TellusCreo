@@ -50,7 +50,8 @@ public class L_OjakgyoFolder : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (empty) return; 
+        if (empty) return;
+        if (type != FolderType.defualt) return;
 
         move = GameObject.Instantiate(movingFolder);
         movingFolder.transform.position = this.transform.position;
