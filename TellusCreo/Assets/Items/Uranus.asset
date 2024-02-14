@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Uranus
   icon: {fileID: 21300000, guid: d411644c8e401a94196ecb55a80c3aee, type: 3}
-  interactTag: 
+  interactTag: Uranus

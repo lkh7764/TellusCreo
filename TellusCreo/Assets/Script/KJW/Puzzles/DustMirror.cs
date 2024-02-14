@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class DustMirror : MonoBehaviour
 {
-    private void OnMouseDown()
+    public void On()
     {
-     
-        if (InventoryManager.Instance.HasItem("Tissue"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

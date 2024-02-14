@@ -2,8 +2,6 @@
 
 public class EarthMaterial : MonoBehaviour
 {
-
-
     private bool Sun = false;
     private bool Water = false;
     private bool Soil = false;
@@ -52,12 +50,14 @@ public class EarthMaterial : MonoBehaviour
     }
     public void Start()
     {
-
     }
+
     // 원하는 시점에 bool 변수를 변경할 수 있는 메서드를 추가할 수 있습니다.
     public void SetSunValue(bool newValue)
     {
         Sun = newValue;
+
+        Save.GetInstance().save();
     }
 
     // 원하는 시점에 bool 변수 값을 얻을 수 있는 메서드를 추가할 수 있습니다.
@@ -70,6 +70,7 @@ public class EarthMaterial : MonoBehaviour
     {
         Water = newValue;
 
+        Save.GetInstance().save();
     }
 
     // 원하는 시점에 bool 변수 값을 얻을 수 있는 메서드를 추가할 수 있습니다.
@@ -81,6 +82,8 @@ public class EarthMaterial : MonoBehaviour
     public void SetSoilValue(bool newValue)
     {
         Soil = newValue;
+
+        Save.GetInstance().save();
     }
 
 
@@ -108,16 +111,19 @@ public class EarthMaterial : MonoBehaviour
     public void SetUseSoil(bool value = true)
     {
         useSoil = value;
+        Save.GetInstance().save();
         Debug.Log("useSoil " + value.ToString());
     }
     public void SetUseWater(bool value = true)
     {
         useWater = value;
+        Save.GetInstance().save();
         Debug.Log("useWater " + value.ToString());
     }
     public void SetUseSun(bool value = true)
     {
         useSun = value;
+        Save.GetInstance().save();
         Debug.Log("useSun " + value.ToString());
     }
 }

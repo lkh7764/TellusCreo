@@ -80,6 +80,8 @@ TagManager:
   - Soil
   - Water
   - Sun
+  - Launcher
+  - Tissue
   layers:
   - Default
   - TransparentFX

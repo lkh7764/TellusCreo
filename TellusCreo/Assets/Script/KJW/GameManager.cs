@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public bool DraggingItem = false;
     public int SetPlanet = 0;
 
-    [SerializeField] Item sun;
+    [SerializeField] Collider2D sun;
     [SerializeField]
     Sprite defaultCurtainSprtie;
     [SerializeField]
@@ -54,6 +54,12 @@ public class GameManager : MonoBehaviour
     bool isCurtainOpen;
     bool switchStatus;
     bool _clearAttic = false;
+
+    bool star_launcher = false;
+    bool arcadeClear = false;
+    bool shadowClear = false;
+    [SerializeField] GameObject jupiter;
+    [SerializeField] BackgroundManager backManager;
 
     public bool this[int idx] // 인덱서 사용
     {
@@ -184,6 +190,13 @@ public class GameManager : MonoBehaviour
                         curtain?.SetActive(false);
                         hitGameObject.transform.parent.Find("Mirror").gameObject.SetActive(true);
                         SoundManager.Instance.Play("curtain_open"); // 열림 사운드
+
+                        if (shadowClear)
+                        {
+                            jupiter.SetActive(true);
+                            SoundManager.Instance.Play("P_drop");
+                            shadowClear = false;
+                        }
                     }
                     else
                     {
@@ -356,6 +369,13 @@ public class GameManager : MonoBehaviour
                         BackgroundManager mirrorBM = Puzzles[(int)Puzzle.Mirror - NUMBER_OF_PUZZLES].GetComponent<BackgroundManager>();
                         Puzzles[(int)Puzzle.Mirror - NUMBER_OF_PUZZLES]?.SetActive(true);
                         ChangeBackground();
+
+                        if (shadowClear)
+                        {
+                            jupiter.SetActive(true);
+                            SoundManager.Instance.Play("P_drop");
+                            shadowClear = false;
+                        }
                     }
                     break;
             }
@@ -401,14 +421,9 @@ public class GameManager : MonoBehaviour
 #endif
 
             _clearAttic = true;
-            if (EarthMaterial.GetInstance() != null)
-            {
-                EarthMaterial.GetInstance().SetSunValue(_clearAttic);
-            }
-            if (InventoryManager.Instance!=null)
-            {
-                InventoryManager.Instance.Add(sun);
-            }
+            sun.enabled = true;
+
+            backManager.ActvieClear();
         }
     }
 
@@ -446,4 +461,15 @@ public class GameManager : MonoBehaviour
         // T 컴포넌트 찾아서 반환 (Select에서 시퀀스 반환 후 FirstOrDefault에서 순회하면서 그 중 컴포넌트를 찾아서 반환)
         return Puzzles.Select(obj => obj.GetComponent<T>()).FirstOrDefault(component => component != null);
     }
+
+    public bool Get_starLauncher() { return star_launcher; }
+    public void Set_starLauncher() {
+        Debug.Log("launcher connected");
+        star_launcher = true;
+    }
+
+    public bool Get_arcadeClear() { return arcadeClear; }
+    public void Set_arcadeClear() { arcadeClear = true; }
+
+    public void Set_shadowClear() { shadowClear = true; }
 }

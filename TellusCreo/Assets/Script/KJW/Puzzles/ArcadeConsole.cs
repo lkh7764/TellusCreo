@@ -102,10 +102,11 @@ public class ArcadeConsole : MonoBehaviour
         {
             clearArcade = true;
             GameManager.Instance[(int)GameManager.Puzzle.ArcadeConsole-GameManager.Instance.NUMBER_OF_PUZZLES] = true;
-            if(InventoryManager.Instance!=null)
-            {
-                InventoryManager.Instance.Add(launcher);
-            }
+            GameManager.Instance.Set_arcadeClear();
+            //if(InventoryManager.Instance!=null)
+            //{
+            //    InventoryManager.Instance.Add(launcher);
+            //}
         }    
     }
 }

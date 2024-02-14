@@ -109,6 +109,7 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                 switch (textContent)
                 {
                     case "Mars":
+                        if (!GameManager.Instance.Get_starLauncher()) return;
                         if (collider.CompareTag(textContent))
                         {
                             if (InventoryManager.Instance == null || !InventoryManager.Instance.HasItem("Mars") || !InventoryManager.Instance.HasItem("Launcher"))
@@ -125,6 +126,7 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                     case "Jupiter":
                         if (collider.CompareTag(textContent))
                         {
+                            if (!GameManager.Instance.Get_starLauncher()) return;
                             if (InventoryManager.Instance == null || !InventoryManager.Instance.HasItem("Jupiter") || !InventoryManager.Instance.HasItem("Launcher"))
                             {
                                 transform.SetParent(parentAfterDrag);
@@ -139,6 +141,7 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                     case "Uranus":
                         if (collider.CompareTag(textContent))
                         {
+                            if (!GameManager.Instance.Get_starLauncher()) return;
                             if (InventoryManager.Instance == null || !InventoryManager.Instance.HasItem("Uranus") || !InventoryManager.Instance.HasItem("Launcher"))
                             {
                                 transform.SetParent(parentAfterDrag);
@@ -146,6 +149,26 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                             }
                             string itemNameToRemove = textContent; // 제거할 아이템의 이름
                             collider.transform.GetChild(0)?.gameObject.SetActive(true);
+                            InventoryManager.Instance.RemoveItemFromInventory(itemNameToRemove);
+                            Destroy(gameObject);
+                        }
+                        break;
+                    case "Launcher":
+                        if (collider.CompareTag(textContent))
+                        {
+                            Attic_SpriteManager.i.On1();
+                            string itemNameToRemove = textContent; // 제거할 아이템의 이름
+                            collider.enabled = false;
+                            InventoryManager.Instance.RemoveItemFromInventory(itemNameToRemove);
+                            Destroy(gameObject);
+                        }
+                        break;
+                    case "Tissue":
+                        if (collider.CompareTag(textContent))
+                        {
+                            Attic_SpriteManager.i.On2();
+                            string itemNameToRemove = textContent; // 제거할 아이템의 이름
+                            collider.enabled = false;
                             InventoryManager.Instance.RemoveItemFromInventory(itemNameToRemove);
                             Destroy(gameObject);
                         }

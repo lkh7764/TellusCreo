@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-enum Obj { BookDrawer, PlantDrawer, SymRightDrawer, SymLeftDrawer, Door }
+enum Obj { BookDrawer, PlantDrawer, SymRightDrawer, SymLeftDrawer, Door,Arcade }
 
 public class L_ClickInteractionObj : MonoBehaviour
 {
@@ -79,6 +79,13 @@ public class L_ClickInteractionObj : MonoBehaviour
                         SceneManager.LoadScene("livingroom");
                     }
                     else
+                    {
+                        SoundManager.Instance.Play("door_locked");
+                        return;
+                    }
+                    break;
+                case Obj.Arcade:
+                    if (!GameManager.Instance.Get_arcadeClear())
                     {
                         SoundManager.Instance.Play("door_locked");
                         return;

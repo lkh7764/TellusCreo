@@ -43,6 +43,9 @@ public class UI : MonoBehaviour
             if(puzzle!=null)
             puzzle?.SetActive(false);
         }
+
+        if (Attic_ObjManager.ins.OnObj)
+            Attic_ObjManager.ins.ResetWindow();
     }
 
     public void LeftArrow()

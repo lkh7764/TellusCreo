@@ -11,9 +11,31 @@ public class BackgroundManager : MonoBehaviour
     [SerializeField]
     Sprite defaultSprite;
 
+    [SerializeField] private bool star = false;
+    [SerializeField] GameObject errorMessage;
+    [SerializeField] GameObject clearMessage;
+
+    [SerializeField] Sprite compareSpr;
+
+
     void Awake()
     {
         InitSpriteRenderer();
+    }
+
+    private void OnEnable()
+    {
+        if (errorMessage == null) return;
+
+        bool active = false;
+        if (star && backGroundSpriteRenderer.sprite == compareSpr)
+        {
+            if (!GameManager.Instance.Get_starLauncher())
+                active = true;
+        }
+
+        ActiveError();
+        ActvieClear();
     }
 
     void InitSpriteRenderer()
@@ -44,6 +66,9 @@ public class BackgroundManager : MonoBehaviour
         currentSpriteIndex = (currentSpriteIndex + 1) % backGroundSpriteList.Count;
         backGroundSpriteRenderer.sprite = backGroundSpriteList[currentSpriteIndex];
 
+
+        ActiveError();
+        ActvieClear();
     }
 
     public void ChangeBackgroundSprite(Sprite sprite)
@@ -57,6 +82,33 @@ public class BackgroundManager : MonoBehaviour
 
         InitSpriteRenderer();
         backGroundSpriteRenderer.sprite = sprite;
+    }
+
+    private void ActiveError()
+    {
+        if (errorMessage == null) return;
+
+        bool active = false;
+        if (star && backGroundSpriteRenderer.sprite == compareSpr)
+        {
+            if (!GameManager.Instance.Get_starLauncher())
+                active = true;
+        }
+
+        errorMessage.SetActive(active);
+    }
+
+    public void ActvieClear()
+    {
+        if (clearMessage == null) return;
+        if (!GameManager.Instance.ClearAttic) return;
+
+        bool active = false;
+        if (star && backGroundSpriteRenderer.sprite == compareSpr)
+            active = true;
+
+        errorMessage.SetActive(false);
+        clearMessage.SetActive(active);
     }
 }
 
