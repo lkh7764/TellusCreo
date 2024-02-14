@@ -3,9 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Save : MonoBehaviour
 {
-
-
     private static Save instance;
+
 
     // 싱글톤 인스턴스를 가져오거나 생성하는 메서드
     public static Save GetInstance()
@@ -28,21 +27,20 @@ public class Save : MonoBehaviour
 
     public void save()
     {
-        
         PlayerPrefs.SetInt("Sun", EarthMaterial.GetInstance().GetSunValue() ? 1 : 0);
         PlayerPrefs.SetInt("Water", EarthMaterial.GetInstance().GetWaterValue() ? 1 : 0);
         PlayerPrefs.SetInt("Soil", EarthMaterial.GetInstance().GetSoilValue() ? 1 : 0);
         PlayerPrefs.SetInt("CutS", EarthMaterial.GetInstance().GetcutValue() ? 1 : 0);
-        
+
+        PlayerPrefs.SetInt("UseSun", EarthMaterial.GetInstance().GetUseSun() ? 1 : 0);
+        PlayerPrefs.SetInt("UseWater", EarthMaterial.GetInstance().GetUseWater() ? 1 : 0);
+        PlayerPrefs.SetInt("UseSoil", EarthMaterial.GetInstance().GetUseSoil() ? 1 : 0);
+
         PlayerPrefs.Save(); 
     }
 
     public void Load()
     {
-        
-
-        
-
         bool sunValue = PlayerPrefs.GetInt("Sun", 0) == 1; 
         EarthMaterial.GetInstance().SetSunValue(sunValue);
 
@@ -54,6 +52,8 @@ public class Save : MonoBehaviour
 
         bool cutValue = PlayerPrefs.GetInt("CutS", 0) == 1;
         EarthMaterial.GetInstance().SetcutValue(cutValue);
+
+
 
         Debug.Log("Sun Value: " + sunValue);
         Debug.Log("Water Value: " + waterValue);

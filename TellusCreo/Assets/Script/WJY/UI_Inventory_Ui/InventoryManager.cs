@@ -120,5 +120,15 @@ public class InventoryManager : MonoBehaviour
         return Items;
     }
 
+    public void ResetInventory()
+    {
+        Items = new List<Item>();
+        ItemDataBase.instance.itemDB = new List<ItemData>();
+        itemDictionary = new Dictionary<string, Item>();
+
+        UpdateInventoryUI();
+        Debug.Log("reset inventory");
+    }
+
     // ListItems 함수는 삭제해도 됩니다.
 }

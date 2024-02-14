@@ -2,13 +2,17 @@
 
 public class EarthMaterial : MonoBehaviour
 {
-    
+
 
     private bool Sun = false;
     private bool Water = false;
     private bool Soil = false;
 
     private bool CutS = false;
+
+    private bool useSun = false;
+    private bool useWater = false;
+    private bool useSoil = false;
 
     private static EarthMaterial instance;
 
@@ -48,7 +52,7 @@ public class EarthMaterial : MonoBehaviour
     }
     public void Start()
     {
-        
+
     }
     // 원하는 시점에 bool 변수를 변경할 수 있는 메서드를 추가할 수 있습니다.
     public void SetSunValue(bool newValue)
@@ -65,7 +69,7 @@ public class EarthMaterial : MonoBehaviour
     public void SetWaterValue(bool newValue)
     {
         Water = newValue;
-        
+
     }
 
     // 원하는 시점에 bool 변수 값을 얻을 수 있는 메서드를 추가할 수 있습니다.
@@ -82,6 +86,7 @@ public class EarthMaterial : MonoBehaviour
 
     public bool GetSoilValue()
     {
+        Debug.Log("Get soil value: "+ Soil.ToString());
         return Soil;
     }
 
@@ -94,5 +99,25 @@ public class EarthMaterial : MonoBehaviour
     public bool GetcutValue()
     {
         return CutS;
+    }
+
+
+    public bool GetUseSoil() { return useSoil; }
+    public bool GetUseWater() { return useWater; }
+    public bool GetUseSun() { return useSun; }
+    public void SetUseSoil(bool value = true)
+    {
+        useSoil = value;
+        Debug.Log("useSoil " + value.ToString());
+    }
+    public void SetUseWater(bool value = true)
+    {
+        useWater = value;
+        Debug.Log("useWater " + value.ToString());
+    }
+    public void SetUseSun(bool value = true)
+    {
+        useSun = value;
+        Debug.Log("useSun " + value.ToString());
     }
 }

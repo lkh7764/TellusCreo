@@ -78,6 +78,8 @@ TagManager:
   - Book6
   - Sym
   - Soil
+  - Water
+  - Sun
   layers:
   - Default
   - TransparentFX

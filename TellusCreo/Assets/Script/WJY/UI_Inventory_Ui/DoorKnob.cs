@@ -33,7 +33,7 @@ public class DoorKnob : MonoBehaviour
         }
         if (!EarthMaterial.GetInstance().GetWaterValue())
         {
-            if (string.Equals(sceneName, "LibraryRoom_lkhDevelop"))
+            if (EarthMaterial.GetInstance().GetSoilValue() && string.Equals(sceneName, "LibraryRoom_lkhDevelop"))
             {
                 SceneManager.LoadScene(sceneName);
                 earthMaterial.SetcutValue(true);
@@ -44,7 +44,7 @@ public class DoorKnob : MonoBehaviour
         }
         if (!EarthMaterial.GetInstance().GetSunValue())
         {
-            if (string.Equals(sceneName, "Attic"))
+            if (EarthMaterial.GetInstance().GetWaterValue() && string.Equals(sceneName, "Attic"))
             {
                 SceneManager.LoadScene(sceneName);
                 earthMaterial.SetcutValue(true);

@@ -80,12 +80,15 @@ public class livingRoomItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
                 switch (textContent)
                 {
                     case "Soil":
+                        FindObjectOfType<livingroomDropzone>().UseSoil();
                         Debug.Log("Soil End");
                         break;
                     case "Water":
+                        FindObjectOfType<livingroomDropzone>().UseWater();
                         Debug.Log("Water End");
                         break;
                     case "Sun":
+                        FindObjectOfType<livingroomDropzone>().UseSun();
                         Debug.Log("Sun End");
                         break;
                 }

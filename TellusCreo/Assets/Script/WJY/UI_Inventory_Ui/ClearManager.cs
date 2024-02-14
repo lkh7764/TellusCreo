@@ -32,13 +32,11 @@ public class ClearManager : MonoBehaviour
         {
             trigger3 = true;
         }
-
-        
-        
-        
     }
+
     private void OnMouseDown()
     {
+
         if (trigger1 && trigger2 && trigger3)
         {
             SceneManager.LoadScene(sceneName);
