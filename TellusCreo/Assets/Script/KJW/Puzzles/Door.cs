@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
             {
                 SceneManager.LoadScene("livingRoom");
                 EarthMaterial.GetInstance().SetSunValue(true);
+                Save.GetInstance().save();
             }
             else Debug.Log("다락방 미완료");
         }

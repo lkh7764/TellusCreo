@@ -11,16 +11,15 @@ public class Attic_obj : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         clicked = true;
     }
 
     private void OnMouseUp()
     {
         if (!clicked) return;
-
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-
 
         Attic_ObjManager.ins.ChangeBackground();
         pair.SetActive(true);

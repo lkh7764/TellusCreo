@@ -76,6 +76,7 @@ public class L_ClickInteractionObj : MonoBehaviour
                         SoundManager.Instance.Play("open_lockedDoor");
 
                         EarthMaterial.GetInstance().SetWaterValue(true);
+                        Save.GetInstance().save();
                         SceneManager.LoadScene("livingroom");
                     }
                     else

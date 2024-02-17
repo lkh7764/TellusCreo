@@ -54,14 +54,14 @@ public class Save : MonoBehaviour
         EarthMaterial.GetInstance().SetcutValue(cutValue);
 
 
-        bool useSun = PlayerPrefs.GetInt("UseSun", 0) == 1;
-        EarthMaterial.GetInstance().SetSunValue(sunValue);
+        bool useSoil = PlayerPrefs.GetInt("UseSoil", 0) == 1;
+        EarthMaterial.GetInstance().SetUseSoil(soilValue);
 
         bool useWater = PlayerPrefs.GetInt("UseWater", 0) == 1;
-        EarthMaterial.GetInstance().SetWaterValue(waterValue);
+        EarthMaterial.GetInstance().SetUseWater(waterValue);
 
-        bool useSoil = PlayerPrefs.GetInt("UseSoil", 0) == 1;
-        EarthMaterial.GetInstance().SetSoilValue(soilValue);
+        bool useSun = PlayerPrefs.GetInt("UseSun", 0) == 1;
+        EarthMaterial.GetInstance().SetUseSun(sunValue);
 
 
         Debug.Log("Sun Value: " + sunValue);

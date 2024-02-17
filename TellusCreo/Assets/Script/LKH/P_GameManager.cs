@@ -122,7 +122,10 @@ public class P_GameManager : MonoBehaviour
     {
         isGetFinalItem = true;
         if (EarthMaterial.GetInstance() != null)
+        {
             EarthMaterial.GetInstance().SetSoilValue(isGetFinalItem);
+            Save.GetInstance().save();
+        }
         Debug.Log("get final item");
     }
 

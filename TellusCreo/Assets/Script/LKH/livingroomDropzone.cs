@@ -31,6 +31,7 @@ public class livingroomDropzone : MonoBehaviour
                 UseSoil();
             else
             {
+                soil.SetActive(false);
                 Debug.Log("soil added");
                 UpdateItem("soil");
                 return;
@@ -44,6 +45,7 @@ public class livingroomDropzone : MonoBehaviour
             else
             {
                 Debug.Log("water added");
+                water.SetActive(false);
                 UpdateItem("water");
                 return;
             }
@@ -56,6 +58,7 @@ public class livingroomDropzone : MonoBehaviour
             else
             {
                 Debug.Log("sun added");
+                sun.SetActive(false);
                 UpdateItem("sun");
                 return;
             }
@@ -69,6 +72,8 @@ public class livingroomDropzone : MonoBehaviour
         soil.SetActive(true);
         EarthMaterial.GetInstance().SetUseSoil(true);
         this.tag = "Water";
+
+        Save.GetInstance().save();
     }
 
     public void UseWater()
@@ -76,12 +81,16 @@ public class livingroomDropzone : MonoBehaviour
         water.SetActive(true);
         EarthMaterial.GetInstance().SetUseWater(true);
         this.tag = "Sun";
+
+        Save.GetInstance().save();
     }
 
     public void UseSun()
     {
         EarthMaterial.GetInstance().SetUseSun(true);
         sun.SetActive(true);
+
+        Save.GetInstance().save();
     }
 
     public void UpdateItem(string name)
