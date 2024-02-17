@@ -29,6 +29,8 @@ public class EarthMaterial : MonoBehaviour
             }
 
             DontDestroyOnLoad(instance.gameObject);
+            Save.GetInstance().Load();
+
         }
         return instance;
     }
@@ -43,6 +45,7 @@ public class EarthMaterial : MonoBehaviour
 
         // 씬 이동 시에도 파괴되지 않도록 설정
         DontDestroyOnLoad(gameObject);
+        Save.GetInstance().Load();
 
 
         // 이 오브젝트를 인스턴스로 설정
@@ -105,9 +108,9 @@ public class EarthMaterial : MonoBehaviour
     }
 
 
-    public bool GetUseSoil() { return useSoil; }
-    public bool GetUseWater() { return useWater; }
-    public bool GetUseSun() { return useSun; }
+    public bool GetUseSoil() { Debug.Log("Get usesoil value: " + useSoil.ToString());     return useSoil; }
+    public bool GetUseWater() { Debug.Log("Get usewater value: " + useWater.ToString());    return useWater; }
+    public bool GetUseSun() { Debug.Log("Get useSun value: " + Sun.ToString());  return useSun; }
     public void SetUseSoil(bool value = true)
     {
         useSoil = value;

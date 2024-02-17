@@ -18,7 +18,7 @@ public class DoorKnob : MonoBehaviour
     private void OnMouseDown()
     {
         EarthMaterial earthMaterial = EarthMaterial.GetInstance();
-        if (CheckRoomOrder()) SceneManager.LoadScene(sceneName);
+        //if (CheckRoomOrder()) SceneManager.LoadScene(sceneName);
       
         if (!EarthMaterial.GetInstance().GetSoilValue())
         {
@@ -26,11 +26,40 @@ public class DoorKnob : MonoBehaviour
             {
                 SceneManager.LoadScene(sceneName);
                 earthMaterial.SetcutValue(true);
+                SoundManager.Instance.Play("open_lockedDoor");
+                return;
             }
-            else
-                a.Play();
-            return;
         }
+        else if (EarthMaterial.GetInstance().GetUseSoil())
+        {
+            if (!EarthMaterial.GetInstance().GetWaterValue())
+            {
+                if (string.Equals(sceneName, "LibraryRoom_lkhDevelop"))
+                {
+                    SceneManager.LoadScene(sceneName);
+                    earthMaterial.SetcutValue(true);
+                    SoundManager.Instance.Play("open_lockedDoor");
+                    return;
+                }
+            }
+            else if (EarthMaterial.GetInstance().GetUseWater())
+            {
+                if (!EarthMaterial.GetInstance().GetSunValue())
+                {
+                    if (string.Equals(sceneName, "Attic"))
+                    {
+                        SceneManager.LoadScene(sceneName);
+                        earthMaterial.SetcutValue(true);
+                        SoundManager.Instance.Play("open_lockedDoor");
+                        return;
+                    }
+                }
+            }
+        }
+
+        a.Play();
+
+        /*
         if (!EarthMaterial.GetInstance().GetWaterValue())
         {
             if (EarthMaterial.GetInstance().GetSoilValue() && string.Equals(sceneName, "LibraryRoom_lkhDevelop"))
@@ -53,7 +82,7 @@ public class DoorKnob : MonoBehaviour
                 a.Play();
             return;
         }
-
+        */
 
         //// 클리어 아닐 때만 입장
         //if (!EarthMaterial.GetInstance().GetSunValue() && string.Equals(sceneName, "Attic"))

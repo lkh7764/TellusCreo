@@ -14,6 +14,8 @@ public class TitleButton : MonoBehaviour
         EarthMaterial earthMaterial = EarthMaterial.GetInstance();
         Save save = Save.GetInstance();
 
+        Save.GetInstance().Load();
+
         // Load the 'cutsceneShown' flag from PlayerPrefs
         //bool cutsceneShown = PlayerPrefs.GetInt("CutsceneShown", 0) == 1;
         //Debug.Log(cutsceneShown);
@@ -27,7 +29,7 @@ public class TitleButton : MonoBehaviour
             {
                 gameStartButton.onClick.AddListener(() =>
                 {
-                    save.Load();
+                    Save.GetInstance().Load();
                     SceneManager.LoadScene("livingroom");
                 });
                 return;
@@ -42,7 +44,7 @@ public class TitleButton : MonoBehaviour
 
             SceneManager.LoadScene("TitleCutscene");
             earthMaterial.SetcutValue(true);
-            save.Load();
+            Save.GetInstance().Load();
         });
 
         //if (!cutsceneShown)

@@ -109,8 +109,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - P_TowerNonMove
+  - P_TowerMove
   - 
   - 
   - P_NotSelectLayer
