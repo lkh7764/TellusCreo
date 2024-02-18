@@ -14,7 +14,7 @@ public class OnOffObject : ClickObject
     {
         if (activeObject != null)
         {
-            SoundManager.Instance.Play("door_locked");
+            SoundManager.Instance.Play("open_lockedDoor");
             activeObject.SetActive((_isOnObject = !_isOnObject));
         }
     }

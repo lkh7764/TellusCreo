@@ -7,18 +7,21 @@ public class P_UI : MonoBehaviour
     public void ClickLeftArrow()
     {
         P_Camera.instance.MoveSide(0);
+        SoundManager.Instance.Play("light_switch");
         PlayMenuClickSound();
     }
 
     public void ClickRightArrow()
     {
         P_Camera.instance.MoveSide(1);
+        SoundManager.Instance.Play("light_switch");
         PlayMenuClickSound();
     }
 
     public void ClickBackArrow()
     {
         P_Camera.instance.ExtiPuzzle();
+        SoundManager.Instance.Play("mouse-click-153941");
         PlayMenuClickSound();
     }
 

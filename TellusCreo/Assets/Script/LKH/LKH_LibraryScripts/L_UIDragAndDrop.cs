@@ -95,6 +95,7 @@ public class L_UIDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
                     case "Cup":
                         Debug.Log("Cup End");
                         L_on.Instance.On1();
+                        SoundManager.Instance.Play("water_pour");
                         break;
                     case "WaterCup":
                         Debug.Log("WaterCup End");

@@ -34,6 +34,7 @@ public class L_LockPuzzle : MonoBehaviour
         }
 
         info.IsClear_true();
+        SoundManager.Instance.Play("puzzle_clear");
     }
 
     public void Set_rightNum(int num, bool value)

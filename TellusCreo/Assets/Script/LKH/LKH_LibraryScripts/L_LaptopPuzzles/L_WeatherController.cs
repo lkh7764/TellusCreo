@@ -60,6 +60,8 @@ public class L_WeatherController : MonoBehaviour
         weatherRenderer.sprite = weatherImg[2];
         spr.sprite = weatherImg[1];
         other.Set_selectedFalse();
+
+        SoundManager.Instance.Play("mouse-click-153941");
     }
 
     public void Set_selectedFalse()

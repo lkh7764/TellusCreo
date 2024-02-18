@@ -14,7 +14,11 @@ public class Door : MonoBehaviour
                 EarthMaterial.GetInstance().SetSunValue(true);
                 Save.GetInstance().save();
             }
-            else Debug.Log("다락방 미완료");
+            else
+            {
+                Debug.Log("다락방 미완료");
+                SoundManager.Instance.Play("door_locked");
+            }
         }
     }
 }

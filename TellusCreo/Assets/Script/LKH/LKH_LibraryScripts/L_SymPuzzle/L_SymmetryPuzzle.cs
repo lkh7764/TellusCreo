@@ -55,7 +55,7 @@ public class L_SymmetryPuzzle : MonoBehaviour
         foreach (L_SymObj obj in objs)
             obj.Set_clearState();
 
-        Debug.Log("BookClear");
+        Debug.Log("SymClear");
     }
 
     public void Set_symPuzzle()
@@ -64,6 +64,8 @@ public class L_SymmetryPuzzle : MonoBehaviour
             obj.Set_puzzleState();
 
         back.enabled = true;
+
+        SoundManager.Instance.Play("puzzle_wire_connect");
 
         readyToPuzzle = true;
     }

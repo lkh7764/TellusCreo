@@ -41,5 +41,9 @@ public class ClearManager : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
         }
+        else
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
     }
 }

@@ -90,5 +90,7 @@ public class L_PlantGrow : MonoBehaviour
         keyRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         keyCollider.enabled = true;
         growing = false;
+
+        SoundManager.Instance.Play("puzzle_clear");
     }
 }

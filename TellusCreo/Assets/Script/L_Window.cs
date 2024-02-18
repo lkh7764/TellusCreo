@@ -7,10 +7,14 @@ public class L_Window : MonoBehaviour
     [SerializeField] private Sprite[] weatherImgs;
     private SpriteRenderer spr;
 
+    private AudioSource au;
+
 
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
+
+        au = GetComponent<AudioSource>();
 
         this.tag = null;
         spr.sprite = weatherImgs[0];
@@ -23,9 +27,15 @@ public class L_Window : MonoBehaviour
         {
             this.tag = "Cup";
             spr.sprite = weatherImgs[1];
+            au.Play();
             return;
         }
         this.tag = null;
         spr.sprite = weatherImgs[0];
+    }
+
+    private void OnDisable()
+    {
+        au.Stop();
     }
 }

@@ -73,11 +73,13 @@ public class ShadowPuzzle : MonoBehaviour
 
     public IEnumerator DogShadowCatchBall() // 강아지가 공을 가져오는 퍼즐
     {
+        SoundManager.Instance.Play("dog");
         for (int i = 0; i < dogShadowSprites.Count; i++)
         {
             GameManager.Instance.Curtain.GetComponent<SpriteRenderer>().sprite = dogShadowSprites[i];
             yield return new WaitForSeconds(DogShadowAnimInterval);
         }
+        SoundManager.Instance.Play("dog");
         GameManager.Instance.Set_shadowClear();
         //GameManager instance = GameManager.Instance;
         //Item jupiter = instance.Puzzles[(int)GameManager.Puzzle.ShadowLight - instance.NUMBER_OF_PUZZLES].GetComponent<ShadowPuzzle>().Jupiter;

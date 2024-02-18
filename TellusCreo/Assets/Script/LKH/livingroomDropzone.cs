@@ -21,6 +21,7 @@ public class livingroomDropzone : MonoBehaviour
         sun.SetActive(false);
 
         CheckClear();
+        Save.GetInstance().save();
     }
 
     private void CheckClear()
@@ -28,7 +29,9 @@ public class livingroomDropzone : MonoBehaviour
         if (EarthMaterial.GetInstance().GetSoilValue())
         {
             if (EarthMaterial.GetInstance().GetUseSoil())
+            {
                 UseSoil();
+            }
             else
             {
                 soil.SetActive(false);
@@ -37,11 +40,13 @@ public class livingroomDropzone : MonoBehaviour
                 return;
             }
         }
-        
+
         if (EarthMaterial.GetInstance().GetWaterValue())
         {
             if (EarthMaterial.GetInstance().GetUseWater())
+            {
                 UseWater();
+            }
             else
             {
                 Debug.Log("water added");
@@ -50,11 +55,13 @@ public class livingroomDropzone : MonoBehaviour
                 return;
             }
         }
-        
+
         if (EarthMaterial.GetInstance().GetSunValue())
         {
             if (EarthMaterial.GetInstance().GetUseSun())
-                UseWater();
+            {
+                UseSun();
+            }
             else
             {
                 Debug.Log("sun added");
@@ -63,8 +70,6 @@ public class livingroomDropzone : MonoBehaviour
                 return;
             }
         }
-
-
     }
 
     public void UseSoil()
@@ -72,25 +77,22 @@ public class livingroomDropzone : MonoBehaviour
         soil.SetActive(true);
         EarthMaterial.GetInstance().SetUseSoil(true);
         this.tag = "Water";
-
-        Save.GetInstance().save();
     }
 
     public void UseWater()
     {
+        soil.SetActive(true);
         water.SetActive(true);
         EarthMaterial.GetInstance().SetUseWater(true);
         this.tag = "Sun";
-
-        Save.GetInstance().save();
     }
 
     public void UseSun()
     {
         EarthMaterial.GetInstance().SetUseSun(true);
+        soil.SetActive(true);
+        water.SetActive(true);
         sun.SetActive(true);
-
-        Save.GetInstance().save();
     }
 
     public void UpdateItem(string name)

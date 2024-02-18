@@ -62,5 +62,6 @@ public class L_on : MonoBehaviour
                 L_AddBooks.Instance.ShowBook(5);
                 break;
         }
+        SoundManager.Instance.Play("puzzle_wire_connect");
     }
 }

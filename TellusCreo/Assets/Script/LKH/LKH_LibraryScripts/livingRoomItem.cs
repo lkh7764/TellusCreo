@@ -19,7 +19,6 @@ public class livingRoomItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public List<ItemData> inventoryItems = new List<ItemData>();
 
     public static livingRoomItem instance;
-
     private string currentItem;
 
     private void Awake()
@@ -81,17 +80,22 @@ public class livingRoomItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
                 {
                     case "Soil":
                         FindObjectOfType<livingroomDropzone>().UseSoil();
+
                         Debug.Log("Soil End");
                         break;
                     case "Water":
                         FindObjectOfType<livingroomDropzone>().UseWater();
+
                         Debug.Log("Water End");
                         break;
                     case "Sun":
                         FindObjectOfType<livingroomDropzone>().UseSun();
+
                         Debug.Log("Sun End");
                         break;
                 }
+                Save.GetInstance().save();
+
                 InventoryManager.Instance.RemoveItemFromInventory(itemName);
                 Destroy(gameObject);
             }
