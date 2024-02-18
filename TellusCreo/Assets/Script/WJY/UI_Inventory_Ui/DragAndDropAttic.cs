@@ -173,7 +173,7 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                             Destroy(gameObject);
                         }
                         break;
-                    default: //Ball
+                    case "Ball":
                         if (collider.CompareTag(textContent))
                         {
                             string itemNameToRemove = "Ball";
@@ -187,6 +187,9 @@ public class DragAndDropAttic : MonoBehaviour, IBeginDragHandler, IEndDragHandle
                             }
                         }
                         break;
+                    //default: //Ball
+
+                    //    break;
                 }
             }
         }

@@ -12,6 +12,8 @@ public class livingroomDropzone : MonoBehaviour
     public Item waterItem;
     public Item soilItem;
 
+    private bool allClear = false;
+
 
     private void Start()
     {
@@ -114,5 +116,11 @@ public class livingroomDropzone : MonoBehaviour
                 InventoryManager.Instance.Add(sunItem);
                 break;
         }
+    }
+
+    private IEnumerator Knock()
+    {
+        yield return new WaitForSeconds(3.0f);
+        //au.Play();
     }
 }

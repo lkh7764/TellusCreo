@@ -5337,6 +5337,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 028c754c4159d204ebfd99be78693076, type: 3}
   - {fileID: 21300000, guid: 950aa47a2e807a0409915065fd39c992, type: 3}
   - {fileID: 21300000, guid: 9900c6346b341aa4c9ebdf4de7407840, type: 3}
+  curtainCollider: {fileID: 0}
 --- !u!4 &749799358
 Transform:
   m_ObjectHideFlags: 0
@@ -6855,7 +6856,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.9, y: -3}
+  m_Offset: {x: -0.9, y: -2.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6866,7 +6867,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &963102523
 MonoBehaviour:
@@ -11476,6 +11477,11 @@ PrefabInstance:
       propertyPath: Offmutebutton
       value: 
       objectReference: {fileID: 1757472444}
+    - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
+        type: 3}
+      propertyPath: menuClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 77075820a6b587841a8e5a288b260be8, type: 3}
     - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
         type: 3}
       propertyPath: backgroundSound

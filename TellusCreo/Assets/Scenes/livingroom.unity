@@ -451,6 +451,7 @@ MonoBehaviour:
   sunItem: {fileID: 11400000, guid: e38a95ce5c72a6148a3b318734cea204, type: 2}
   waterItem: {fileID: 11400000, guid: 386915a1d406ba341ad64fe046f828ab, type: 2}
   soilItem: {fileID: 11400000, guid: bc7cbe706ba38834daaf3fb75942b435, type: 2}
+  au: {fileID: 262058507}
 --- !u!82 &262058507
 AudioSource:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9d73c0781133fdf4092ae1ab55dd3618, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 900dc884dc04ae142b3e06a7207f2057, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1956,7 +1957,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 83b65fa8f1182ca4aac5d9fde4c1223d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 77075820a6b587841a8e5a288b260be8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3524,6 +3525,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1600928276033727792, guid: 3cede6262d25ffa46933df2d3c834958,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712330908583931196, guid: 3cede6262d25ffa46933df2d3c834958,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712330908583931196, guid: 3cede6262d25ffa46933df2d3c834958,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712330908583931196, guid: 3cede6262d25ffa46933df2d3c834958,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712330908583931196, guid: 3cede6262d25ffa46933df2d3c834958,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1846227729119539967, guid: 3cede6262d25ffa46933df2d3c834958,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4634,9 +4660,29 @@ PrefabInstance:
       objectReference: {fileID: 1617705223}
     - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
         type: 3}
+      propertyPath: menuClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 77075820a6b587841a8e5a288b260be8, type: 3}
+    - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
+        type: 3}
       propertyPath: backgroundSound
       value: 
       objectReference: {fileID: 8300000, guid: e781bccae0dd7994484c4b615890e23d, type: 3}
+    - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
+        type: 3}
+      propertyPath: bagClickAudioSource
+      value: 
+      objectReference: {fileID: 1466044085}
+    - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
+        type: 3}
+      propertyPath: menuClickAudioSource
+      value: 
+      objectReference: {fileID: 962374752}
+    - target: {fileID: 8637147245367154046, guid: 25a728ac64d16304299073b6abd81547,
+        type: 3}
+      propertyPath: buttonClickAudioSource
+      value: 
+      objectReference: {fileID: 963549009}
     - target: {fileID: 8637147245367154047, guid: 25a728ac64d16304299073b6abd81547,
         type: 3}
       propertyPath: m_RootOrder

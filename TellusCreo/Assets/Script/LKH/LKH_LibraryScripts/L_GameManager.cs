@@ -62,7 +62,7 @@ public class L_GameManager : MonoBehaviour
 
         getFinalItem = false;
 
-        SoundManager.Instance.Play("library_bgm", Sound.Bgm);
+        //SoundManager.Instance.Play("library_bgm", Sound.Bgm);
     }
 
     void Update()

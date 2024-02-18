@@ -32,6 +32,8 @@ public class ShadowPuzzle : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Shadow shadow = Shadow.Cat;
 
+    [SerializeField] Collider2D curtainCollider;
+
     private void Start()
     {
         _idx = -1;
@@ -74,12 +76,17 @@ public class ShadowPuzzle : MonoBehaviour
     public IEnumerator DogShadowCatchBall() // 강아지가 공을 가져오는 퍼즐
     {
         SoundManager.Instance.Play("dog");
+        //curtainCollider.enabled = false;
+        GameManager.Instance.Curtain.GetComponent<Collider2D>().enabled = false;
+
         for (int i = 0; i < dogShadowSprites.Count; i++)
         {
             GameManager.Instance.Curtain.GetComponent<SpriteRenderer>().sprite = dogShadowSprites[i];
             yield return new WaitForSeconds(DogShadowAnimInterval);
         }
         SoundManager.Instance.Play("dog");
+        //curtainCollider.enabled = true;
+        GameManager.Instance.Curtain.GetComponent<Collider2D>().enabled = true;
         GameManager.Instance.Set_shadowClear();
         //GameManager instance = GameManager.Instance;
         //Item jupiter = instance.Puzzles[(int)GameManager.Puzzle.ShadowLight - instance.NUMBER_OF_PUZZLES].GetComponent<ShadowPuzzle>().Jupiter;

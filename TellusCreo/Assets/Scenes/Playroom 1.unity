@@ -19520,5 +19520,10 @@ PrefabInstance:
       propertyPath: Offmutebutton
       value: 
       objectReference: {fileID: 743164054}
+    - target: {fileID: 7898541989166259975, guid: 595855a57d691df41aa360a2dd0681d5,
+        type: 3}
+      propertyPath: menuClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 77075820a6b587841a8e5a288b260be8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595855a57d691df41aa360a2dd0681d5, type: 3}
